@@ -541,7 +541,7 @@ class AdminPurchase:
                         _gEmailApi = googleEmail.googleEmailApi()
                         # msg = _gEmailApi.create_message("demofyp00@gmail.com", "demofyp00@gmail.com", "test", "Hello")
                         # print(rf"{root.filename}")
-                        msg = _gEmailApi.create_message_with_attachment("demofyp00@gmail.com", customerEmail_entry.get(), "test", "Hello",
+                        msg = _gEmailApi.create_message_with_attachment("demofyp00@gmail.com", customerEmail_entry.get(), "Quotation", "Hello",
                                                                         rf"{root.filename}")
                         _gEmailApi.send_message("demofyp00@gmail.com", msg)
                         root.destroy()
