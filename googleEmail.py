@@ -67,7 +67,6 @@ class googleEmailApi:
         return(body)
         #return {'raw': base64.urlsafe_b64encode(message.as_bytes())}
 
-
     def send_message(self, user_id, message):
         message = (self.service.users().messages().send(userId=user_id, body=message).execute())
         return message
@@ -79,7 +78,7 @@ class googleEmailApi:
         mime_message['subject'] = subject
         # text
         mime_message.set_content(
-            'Hi, below is the quotation file.'
+            'Hi, below is the receipt.'
             'Kindly check it.'
         )
         attachment_filename = f"{file}"

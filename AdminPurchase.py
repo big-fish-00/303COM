@@ -564,11 +564,11 @@ class AdminPurchase:
                         _gEmailApi = googleEmail.googleEmailApi()
                         # msg = _gEmailApi.create_message("demofyp00@gmail.com", "demofyp00@gmail.com", "test", "Hello")
                         # print(rf"{root.filename}")
-                        msg = _gEmailApi.create_message_with_attachment("demofyp00@gmail.com", customerEmail_entry.get(), "Quotation", "Hello",
+                        msg = _gEmailApi.create_message_with_attachment("demofyp00@gmail.com", customerEmail_entry.get(), "Receipt", "Hello",
                                                                         rf"{root.filename}")
                         _gEmailApi.send_message("demofyp00@gmail.com", msg)
                         root.destroy()
-                        messagebox.showinfo("Success", "Quotation send successful.")
+                        messagebox.showinfo("Success", "Receipt send successful.")
 
                 notification = Label(root, text="Below will send the attachement to customer email.\n\n "
                                                 "Kindly ensure email before send.\n\n"
@@ -742,7 +742,7 @@ class AdminPurchase:
         compContactText.place(x=1090, y=304)
 
         def leave():
-            close = messagebox.askyesno("Exit", "Are you sure you want to exit?", parent=admin_inventory_page)
+            close = messagebox.askyesno("Exit", "Are you sure you want to exit?", parent=purchase_page)
             if close == True:
                 purchase_page.destroy()
 

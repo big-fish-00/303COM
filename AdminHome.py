@@ -30,12 +30,12 @@ class Account:
 
         def stock():
             root.destroy()
-            filename = "inventory.py"
+            filename = "AdminInventory.py"
             os.system(filename)
 
         def supplier():
             root.destroy()
-            filename = "Supplier.py"
+            filename = "AdminSupplier.py"
             os.system(filename)
 
         def bill():

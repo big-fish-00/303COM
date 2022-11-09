@@ -26,34 +26,38 @@ class PurchaseTable:
 
         def default_page():
             purchase_table_page.destroy()
-            filename = 'EmployeeHome.py'
+            filename = 'AdminHome.py.py'
             os.system(filename)
 
         def inventory():
             purchase_table_page.destroy()
-            filename = 'inventory.py'
+            filename = 'AdminInventory.py'
             os.system(filename)
 
         def supplier():
             purchase_table_page.destroy()
-            filename = 'Supplier.py'
+            filename = 'AdminSupplier.py'
             os.system(filename)
 
         def purchase():
             purchase_table_page.destroy()
-            filename = 'purchase.py'
+            filename = 'AdminPurchase.py'
             os.system(filename)
 
-        def table():
+        def bill_table():
             purchase_table_page.destroy()
             filename = 'PurchaseTable.py'
+            os.system(filename)
+
+        def forecast_product():
+            purchase_table_page.destroy()
+            filename = 'SalesForecast.py'
             os.system(filename)
 
         def logout():
             purchase_table_page.destroy()
             filename = 'account.py'
             os.system(filename)
-
 
         def control():
 
@@ -88,8 +92,9 @@ class PurchaseTable:
             button(0, 120, 'I N V E N T O R Y', inventory)
             button(0, 160, 'S U P P L I E R', supplier)
             button(0, 200, 'P U R C H A S E', purchase)
-            button(0, 240, 'P U R C H A S E T A B L E', table)
-            button(0, 400, 'L O G O U T', logout)
+            button(0, 240, 'P A Y M E N T', bill_table)
+            button(0, 280, 'F O R E C A S T', forecast_product)
+            button(0, 680, 'L O G O U T', logout)
 
             def close():
                 menuFrame.destroy()
