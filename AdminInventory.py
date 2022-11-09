@@ -7,51 +7,61 @@ import sqlite3
 
 
 class Inventory:
-    def __init__(self, inventory_page):
-        self.inventory_page = inventory_page
+    def __init__(self, admin_inventory_page):
+        self.admin_inventory_page = admin_inventory_page
 
-        inventory_page.rowconfigure(0, weight=0)
-        inventory_page.columnconfigure(0, weight=0)
+        admin_inventory_page.rowconfigure(0, weight=0)
+        admin_inventory_page.columnconfigure(0, weight=0)
         width = 1410
         height = 720
-        screen_width = inventory_page.winfo_screenwidth()
-        screen_height = inventory_page.winfo_screenheight()
+        screen_width = admin_inventory_page.winfo_screenwidth()
+        screen_height = admin_inventory_page.winfo_screenheight()
         x = (screen_width / 2) - (width / 2)
         y = (screen_height / 3.5) - (height / 3.5)
-        inventory_page.geometry("%dx%d+%d+%d" % (width, height, x, y))
+        admin_inventory_page.geometry("%dx%d+%d+%d" % (width, height, x, y))
 
-        inventory_page.title('Inventory')
+        admin_inventory_page.title('Inventory')
 
-        inventory_page['bg'] = '#BBD0FF'
+        admin_inventory_page['bg'] = '#BBD0FF'
 
         def default_page():
-            inventory_page.destroy()
-            filename = 'EmployeeHome.py'
+            admin_inventory_page.destroy()
+            filename = 'AdminHome.py.py'
             os.system(filename)
 
         def inventory():
-            inventory_page.destroy()
-            filename = 'inventory.py'
+            admin_inventory_page.destroy()
+            filename = 'AdminInventory.py'
             os.system(filename)
 
         def supplier():
-            inventory_page.destroy()
-            filename = 'Supplier.py'
+            admin_inventory_page.destroy()
+            filename = 'AdminSupplier.py'
             os.system(filename)
 
         def purchase():
-            inventory_page.destroy()
-            filename = 'purchase.py'
+            admin_inventory_page.destroy()
+            filename = 'AdminPurchase.py'
+            os.system(filename)
+
+        def bill_table():
+            admin_inventory_page.destroy()
+            filename = 'PurchaseTable.py'
+            os.system(filename)
+
+        def forecast_product():
+            admin_inventory_page.destroy()
+            filename = 'SalesForecast.py'
             os.system(filename)
 
         def logout():
-            inventory_page.destroy()
+            admin_inventory_page.destroy()
             filename = 'account.py'
             os.system(filename)
 
         def control():
 
-            menuFrame = Frame(inventory_page, width=300, height=750, bg='#D4E1F1', border=1)
+            menuFrame = Frame(admin_inventory_page, width=300, height=750, bg='#D4E1F1', border=1)
             menuFrame.place(x=0, y=0)
 
             def button(x, y, text, click):
@@ -82,6 +92,8 @@ class Inventory:
             button(0, 120, 'I N V E N T O R Y', inventory)
             button(0, 160, 'S U P P L I E R', supplier)
             button(0, 200, 'P U R C H A S E', purchase)
+            button(0, 240, 'P A Y M E N T', bill_table)
+            button(0, 280, 'F O R E C A S T', forecast_product)
             button(0, 680, 'L O G O U T', logout)
 
             def close():
@@ -100,18 +112,18 @@ class Inventory:
             closeButton.place(x=260, y=10)
 
         # HOME PAGE MENU BAR
-        header_line = Canvas(inventory_page, width=1420, height=1, bg="black", highlightthickness=0)
+        header_line = Canvas(admin_inventory_page, width=1420, height=1, bg="black", highlightthickness=0)
         header_line.place(x=0, y=60)
 
         # OPEN MENU BAR IMG
         menu_img = Image.open('images\\menu.png')
         menu_img_resize = menu_img.resize((25, 25))
         menu_photo = ImageTk.PhotoImage(menu_img_resize)
-        menu_photo_place = Label(inventory_page, image=menu_photo, bg='#BBD0FF')
+        menu_photo_place = Label(admin_inventory_page, image=menu_photo, bg='#BBD0FF')
         menu_photo_place.image = menu_photo
 
         # OPEN MENU BAR BUTTON
-        menuBtn = Button(inventory_page, image=menu_photo, bg='#BBD0FF', activebackground='#BBD0FF', width=40, height=40,
+        menuBtn = Button(admin_inventory_page, image=menu_photo, bg='#BBD0FF', activebackground='#BBD0FF', width=40, height=40,
                          border=0, command=control)
         menuBtn.place(x=0, y=9)
 
@@ -436,7 +448,7 @@ class Inventory:
                   background=[('selected', "#347083")])
 
         # Create a Treeview Frame
-        tree_frame = Frame(inventory_page)
+        tree_frame = Frame(admin_inventory_page)
         tree_frame.pack(pady=80)
 
         # Create a Treeview Scrollbar
@@ -490,7 +502,7 @@ class Inventory:
         tree_table.tag_configure('evenrow', background="lightblue")
 
         # Create label frame
-        search_frame = LabelFrame(inventory_page, text="Search Stock Name", font=("Comic Sans MS", 15, 'italic'),
+        search_frame = LabelFrame(admin_inventory_page, text="Search Stock Name", font=("Comic Sans MS", 15, 'italic'),
                                   background='#BBD0FF')
         search_frame.pack(fill="x", padx=20)
         search_frame.place(x=20, y=360)
@@ -502,7 +514,7 @@ class Inventory:
         search_button.grid(row=0, column=1, padx=10, pady=10)
 
         # Add Record Entry Boxes
-        info_frame = LabelFrame(inventory_page, text="Stock", font=("Comic Sans MS", 15, 'italic'),
+        info_frame = LabelFrame(admin_inventory_page, text="Stock", font=("Comic Sans MS", 15, 'italic'),
                                 background='#BBD0FF')
         info_frame.pack(fill="x", padx=20, pady=(20, 0))
 
@@ -575,7 +587,7 @@ class Inventory:
         total_entry.grid(row=1, column=11, padx=10, pady=10)
 
         # Add Buttons
-        button_frame = LabelFrame(inventory_page, text="Commands", font=("Comic Sans MS", 15, 'italic'),
+        button_frame = LabelFrame(admin_inventory_page, text="Commands", font=("Comic Sans MS", 15, 'italic'),
                                   background='#BBD0FF')
         button_frame.pack(fill="x", padx=20, pady=(30, 0))
 
@@ -629,14 +641,14 @@ class Inventory:
         query_database()
 
         def leave():
-            close = messagebox.askyesno("Exit", "Are you sure you want to exit?", parent=inventory_page)
+            close = messagebox.askyesno("Exit", "Are you sure you want to exit?", parent=admin_inventory_page)
             if close == True:
-                inventory_page.destroy()
+                admin_inventory_page.destroy()
 
             else:
                 pass
 
-        inventory_page.protocol("WM_DELETE_WINDOW", leave)
+        admin_inventory_page.protocol("WM_DELETE_WINDOW", leave)
 
 
 def page():

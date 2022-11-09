@@ -20,7 +20,7 @@ class PurchaseTable:
         y = (screen_height / 3.5) - (height / 3.5)
         purchase_table_page.geometry("%dx%d+%d+%d" % (width, height, x, y))
 
-        purchase_table_page.title('Inventory')
+        purchase_table_page.title('Payment Table')
 
         purchase_table_page['bg'] = '#BBD0FF'
 

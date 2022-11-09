@@ -7,51 +7,61 @@ import sqlite3
 
 
 class Supplier:
-    def __init__(self, supplier_page):
-        self.supplier_page = supplier_page
+    def __init__(self, admin_supplier_page):
+        self.admin_supplier_page = admin_supplier_page
 
-        supplier_page.rowconfigure(0, weight=0)
-        supplier_page.columnconfigure(0, weight=0)
+        admin_supplier_page.rowconfigure(0, weight=0)
+        admin_supplier_page.columnconfigure(0, weight=0)
         width = 1410
         height = 720
-        screen_width = supplier_page.winfo_screenwidth()
-        screen_height = supplier_page.winfo_screenheight()
+        screen_width = admin_supplier_page.winfo_screenwidth()
+        screen_height = admin_supplier_page.winfo_screenheight()
         x = (screen_width / 2) - (width / 2)
         y = (screen_height / 3.5) - (height / 3.5)
-        supplier_page.geometry("%dx%d+%d+%d" % (width, height, x, y))
+        admin_supplier_page.geometry("%dx%d+%d+%d" % (width, height, x, y))
 
-        supplier_page.title('Supplier')
+        admin_supplier_page.title('Supplier')
 
-        supplier_page['bg'] = '#BBD0FF'
+        admin_supplier_page['bg'] = '#BBD0FF'
 
         def default_page():
-            supplier_page.destroy()
-            filename = 'EmployeeHome.py'
+            admin_supplier_page.destroy()
+            filename = 'AdminHome.py.py'
             os.system(filename)
 
         def inventory():
-            supplier_page.destroy()
-            filename = 'inventory.py'
+            admin_supplier_page.destroy()
+            filename = 'AdminInventory.py'
             os.system(filename)
 
         def supplier():
-            supplier_page.destroy()
-            filename = 'Supplier.py'
+            admin_supplier_page.destroy()
+            filename = 'AdminSupplier.py'
             os.system(filename)
 
         def purchase():
-            supplier_page.destroy()
-            filename = 'purchase.py'
+            admin_supplier_page.destroy()
+            filename = 'AdminPurchase.py'
+            os.system(filename)
+
+        def bill_table():
+            admin_supplier_page.destroy()
+            filename = 'PurchaseTable.py'
+            os.system(filename)
+
+        def forecast_product():
+            admin_supplier_page.destroy()
+            filename = 'SalesForecast.py'
             os.system(filename)
 
         def logout():
-            supplier_page.destroy()
+            admin_supplier_page.destroy()
             filename = 'account.py'
             os.system(filename)
 
         def control():
 
-            menuFrame = Frame(supplier_page, width=300, height=750, bg='#D4E1F1', border=1)
+            menuFrame = Frame(admin_supplier_page, width=300, height=750, bg='#D4E1F1', border=1)
             menuFrame.place(x=0, y=0)
 
             def button(x, y, text, click):
@@ -82,6 +92,8 @@ class Supplier:
             button(0, 120, 'I N V E N T O R Y', inventory)
             button(0, 160, 'S U P P L I E R', supplier)
             button(0, 200, 'P U R C H A S E', purchase)
+            button(0, 240, 'P A Y M E N T', bill_table)
+            button(0, 280, 'F O R E C A S T', forecast_product)
             button(0, 680, 'L O G O U T', logout)
 
             def close():
@@ -100,18 +112,18 @@ class Supplier:
             closeButton.place(x=260, y=10)
 
         # HOME PAGE MENU BAR
-        header_line = Canvas(supplier_page, width=1420, height=1, bg="black", highlightthickness=0)
+        header_line = Canvas(admin_supplier_page, width=1420, height=1, bg="black", highlightthickness=0)
         header_line.place(x=0, y=60)
 
         # OPEN MENU BAR IMG
         menu_img = Image.open('images\\menu.png')
         menu_img_resize = menu_img.resize((25, 25))
         menu_photo = ImageTk.PhotoImage(menu_img_resize)
-        menu_photo_place = Label(supplier_page, image=menu_photo, bg='#BBD0FF')
+        menu_photo_place = Label(admin_supplier_page, image=menu_photo, bg='#BBD0FF')
         menu_photo_place.image = menu_photo
 
         # OPEN MENU BAR BUTTON
-        menuBtn = Button(supplier_page, image=menu_photo, bg='#BBD0FF', activebackground='#BBD0FF', width=40, height=40,
+        menuBtn = Button(admin_supplier_page, image=menu_photo, bg='#BBD0FF', activebackground='#BBD0FF', width=40, height=40,
                          border=0, command=control)
         menuBtn.place(x=0, y=9)
 
@@ -394,7 +406,7 @@ class Supplier:
                   background=[('selected', "#347083")])
 
         # Create a Treeview Frame
-        tree_frame = Frame(supplier_page)
+        tree_frame = Frame(admin_supplier_page)
         tree_frame.pack(pady=80)
 
         # Create a Treeview Scrollbar
@@ -437,7 +449,7 @@ class Supplier:
         supplier_table.tag_configure('evenrow', background="lightblue")
 
         # Create label frame
-        search_frame = LabelFrame(supplier_page, text="Search Supplier Name", font=("Comic Sans MS", 15, 'italic'),
+        search_frame = LabelFrame(admin_supplier_page, text="Search Supplier Name", font=("Comic Sans MS", 15, 'italic'),
                                   background='#BBD0FF')
         search_frame.pack(fill="x", padx=20)
         search_frame.place(x=20, y=360)
@@ -455,7 +467,7 @@ class Supplier:
         searchDocument_button.grid(row=0, column=4, padx=10, pady=10)
 
         # Add Record Entry Boxes
-        info_frame = LabelFrame(supplier_page, text="Supplier Info", font=("Comic Sans MS", 15, 'italic'),
+        info_frame = LabelFrame(admin_supplier_page, text="Supplier Info", font=("Comic Sans MS", 15, 'italic'),
                                 background='#BBD0FF')
         info_frame.pack(fill="x", padx=20, pady=(30, 0))
 
@@ -497,7 +509,7 @@ class Supplier:
         document_entry.grid(row=1, column=1, padx=10, pady=10)
 
         # Add Buttons
-        button_frame = LabelFrame(supplier_page, text="Commands", font=("Comic Sans MS", 15, 'italic'),
+        button_frame = LabelFrame(admin_supplier_page, text="Commands", font=("Comic Sans MS", 15, 'italic'),
                                   background='#BBD0FF')
         button_frame.pack(fill="x", padx=20, pady=(30, 0))
 
@@ -551,14 +563,14 @@ class Supplier:
         query_database()
 
         def leave():
-            close = messagebox.askyesno("Exit", "Are you sure you want to exit?", parent=supplier_page)
+            close = messagebox.askyesno("Exit", "Are you sure you want to exit?", parent=admin_supplier_page)
             if close == True:
-                supplier_page.destroy()
+                admin_supplier_page.destroy()
 
             else:
                 pass
 
-        supplier_page.protocol("WM_DELETE_WINDOW", leave)
+        admin_supplier_page.protocol("WM_DELETE_WINDOW", leave)
 
 
 def page():

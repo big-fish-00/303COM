@@ -26,33 +26,38 @@ class SalesForecast:
         y = (screen_height / 3.5) - (height / 3.5)
         sales_forecast_page.geometry("%dx%d+%d+%d" % (width, height, x, y))
 
-        sales_forecast_page.title('Inventory')
+        sales_forecast_page.title('Forecast')
 
         sales_forecast_page['bg'] = '#BBD0FF'
 
         def default_page():
             sales_forecast_page.destroy()
-            filename = 'EmployeeHome.py'
+            filename = 'AdminHome.py.py'
             os.system(filename)
 
         def inventory():
             sales_forecast_page.destroy()
-            filename = 'inventory.py'
+            filename = 'AdminInventory.py'
             os.system(filename)
 
         def supplier():
             sales_forecast_page.destroy()
-            filename = 'Supplier.py'
+            filename = 'AdminSupplier.py'
             os.system(filename)
 
         def purchase():
             sales_forecast_page.destroy()
-            filename = 'purchase.py'
+            filename = 'AdminPurchase.py'
             os.system(filename)
 
-        def table():
+        def bill_table():
             sales_forecast_page.destroy()
             filename = 'PurchaseTable.py'
+            os.system(filename)
+
+        def forecast_product():
+            sales_forecast_page.destroy()
+            filename = 'SalesForecast.py'
             os.system(filename)
 
         def logout():
@@ -93,8 +98,9 @@ class SalesForecast:
             button(0, 120, 'I N V E N T O R Y', inventory)
             button(0, 160, 'S U P P L I E R', supplier)
             button(0, 200, 'P U R C H A S E', purchase)
-            button(0, 240, 'P U R C H A S E T A B L E', table)
-            button(0, 400, 'L O G O U T', logout)
+            button(0, 240, 'P A Y M E N T', bill_table)
+            button(0, 280, 'F O R E C A S T', forecast_product)
+            button(0, 680, 'L O G O U T', logout)
 
             def close():
                 menuFrame.destroy()

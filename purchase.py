@@ -59,7 +59,7 @@ class Purchase:
         y = (screen_height / 3.5) - (height / 3.5)
         purchase_page.geometry("%dx%d+%d+%d" % (width, height, x, y))
 
-        purchase_page.title('Inventory')
+        purchase_page.title('Purchase')
 
         purchase_page['bg'] = '#BBD0FF'
 
@@ -68,7 +68,7 @@ class Purchase:
         bill_num = StringVar()
         bill_date = StringVar()
 
-        def defaul_page():
+        def default_page():
             purchase_page.destroy()
             filename = 'EmployeeHome.py'
             os.system(filename)
@@ -78,9 +78,19 @@ class Purchase:
             filename = 'inventory.py'
             os.system(filename)
 
-        def pos():
+        def supplier():
+            purchase_page.destroy()
+            filename = 'Supplier.py'
+            os.system(filename)
+
+        def purchase():
             purchase_page.destroy()
             filename = 'purchase.py'
+            os.system(filename)
+
+        def logout():
+            purchase_page.destroy()
+            filename = 'account.py'
             os.system(filename)
 
         def control():
@@ -112,10 +122,11 @@ class Purchase:
 
                 widgetButton.place(x=x, y=y)
 
-            button(0, 80, 'H O M E', defaul_page)
+            button(0, 80, 'H O M E', default_page)
             button(0, 120, 'I N V E N T O R Y', inventory)
-            button(0, 160, 'P O S', pos)
-            button(0, 400, 'L O G O U T', pos)
+            button(0, 160, 'S U P P L I E R', supplier)
+            button(0, 200, 'P U R C H A S E', purchase)
+            button(0, 680, 'L O G O U T', logout)
 
             def close():
                 menuFrame.destroy()
@@ -663,6 +674,16 @@ class Purchase:
         compContactText = Text(purchase_page, font=("Poppins SemiBold", 11, 'italic'),
                                background='white', borderwidth=0, width=20, height=1)
         compContactText.place(x=1090, y=294)
+
+        def leave():
+            close = messagebox.askyesno("Exit", "Are you sure you want to exit?", parent=inventory_page)
+            if close == True:
+                purchase_page.destroy()
+
+            else:
+                pass
+
+        purchase_page.protocol("WM_DELETE_WINDOW", leave)
 
 
 def page():

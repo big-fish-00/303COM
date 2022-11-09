@@ -40,8 +40,19 @@ class Account:
 
         def bill():
             root.destroy()
-            filename = "purchase.py"
+            filename = "AdminPurchase.py"
             os.system(filename)
+
+        def bill_table():
+            root.destroy()
+            filename = 'PurchaseTable.py'
+            os.system(filename)
+
+        def forecast_product():
+            root.destroy()
+            filename = 'SalesForecast.py'
+            os.system(filename)
+
 
         def logout():
             root.destroy()
@@ -59,37 +70,61 @@ class Account:
         stock_photo = ImageTk.PhotoImage(stock_resize)
         stock_photo_icon = Label(root, image=stock_photo, bg='#BBD0FF')
         stock_photo_icon.image = stock_photo
-        stock_photo_icon.place(x=180, y=220)
+        stock_photo_icon.place(x=150, y=220)
 
         stockButton = Button(root, font=("Poppins SemiBold", 12, 'italic'), text='Inventory',  background='white',
                              width=15, height=1, relief='flat', borderwidth=0, overrelief="flat", cursor='hand2',
                              foreground='black', activebackground='grey', command=stock)
-        stockButton.place(x=175, y=430)
+        stockButton.place(x=155, y=430)
 
         supplier_icon = Image.open('images\\supplier.png')
         supplier_resize = supplier_icon.resize((150, 160))
         supplier_photo = ImageTk.PhotoImage(supplier_resize)
         supplier_photo_icon = Label(root, image=supplier_photo, bg='#BBD0FF')
         supplier_photo_icon.image = supplier_photo
-        supplier_photo_icon.place(x=570, y=220)
+        supplier_photo_icon.place(x=400, y=220)
 
         supplButton = Button(root, font=("Poppins SemiBold", 12, 'italic'), text='Supplier',  background='white',
                              width=15, height=1, relief='flat', borderwidth=0, overrelief="flat", cursor='hand2',
                              foreground='black', activebackground='grey', command=supplier)
-        supplButton.place(x=575, y=430)
+        supplButton.place(x=405, y=430)
 
         bill_icon = Image.open('images\\bill.png')
-        bill_resize = bill_icon.resize((150, 160))
+        bill_resize = bill_icon.resize((150, 150))
         bill_photo = ImageTk.PhotoImage(bill_resize)
         bill_photo_icon = Label(root, image=bill_photo, bg='#BBD0FF')
         bill_photo_icon.image = bill_photo
-        bill_photo_icon.place(x=980, y=220)
+        bill_photo_icon.place(x=650, y=225)
 
         billButton = Button(root, font=("Poppins SemiBold", 12, 'italic'), text='Purchase', background='white',
                              width=15, height=1, relief='flat', borderwidth=0, overrelief="flat", cursor='hand2',
                              foreground='black', activebackground='grey', command=bill)
-        billButton.place(x=995, y=430)
+        billButton.place(x=655, y=430)
 
+        billtable_icon = Image.open('images\\table.png')
+        billtable_resize = billtable_icon.resize((150, 150))
+        billtable_photo = ImageTk.PhotoImage(billtable_resize)
+        billtable_photo_icon = Label(root, image=billtable_photo, bg='#BBD0FF')
+        billtable_photo_icon.image = billtable_photo
+        billtable_photo_icon.place(x=890, y=225)
+
+        billTableButton = Button(root, font=("Poppins SemiBold", 12, 'italic'), text='Purchase Table', background='white',
+                             width=15, height=1, relief='flat', borderwidth=0, overrelief="flat", cursor='hand2',
+                             foreground='black', activebackground='grey', command=bill_table)
+        billTableButton.place(x=900, y=430)
+
+        graph_icon = Image.open('images\\graph.png')
+        graph_resize = graph_icon.resize((150, 150))
+        graph_photo = ImageTk.PhotoImage(graph_resize)
+        graph_photo_icon = Label(root, image=graph_photo, bg='#BBD0FF')
+        graph_photo_icon.image = graph_photo
+        graph_photo_icon.place(x=1150, y=225)
+
+        forecastButton = Button(root, font=("Poppins SemiBold", 12, 'italic'), text='Forecast',
+                                 background='white',
+                                 width=15, height=1, relief='flat', borderwidth=0, overrelief="flat", cursor='hand2',
+                                 foreground='black', activebackground='grey', command=forecast_product)
+        forecastButton.place(x=1150, y=430)
 
         logoutBtn = Button(root, font=("Poppins SemiBold", 12, 'italic'), text='Logout', background='white',
                              width=15, height=1, relief='flat', borderwidth=0, overrelief="flat", cursor='hand2',

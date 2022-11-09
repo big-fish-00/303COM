@@ -24,7 +24,7 @@ forecast = m.predict(future)
 
 figure = m.plot(forecast)
 
-figure.suptitle('dbshof', fontweight='bold')
+figure.suptitle('Product', fontweight='bold')
 figure.subplots_adjust(top=0.930,
                        bottom=0.098,
                        left=0.08,

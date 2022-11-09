@@ -438,7 +438,7 @@ class Account:
         # SHOW MANAGER PAGE
         def admin_page():
             root.destroy()
-            filename = 'admin.py'
+            filename = 'AdminHome.py'
             os.system(filename)
 
         # DATABASE
@@ -717,7 +717,7 @@ class Account:
                                 key = b'qVnbM24duboqndhyHznH9hrd5IqLl5PjD8fspYKGI8Y='
                                 fernet = Fernet(key)
                                 hashed2 = fernet.encrypt(forget_password_rec.get().encode())
-                                print(hashed2)
+                                # print(hashed2)
                                 connect = sqlite3.connect('database/DnetPower.db')
                                 curs = connect.cursor()
                                 update = 'update Admin_account set admin_password=? WHERE admin_username=? '
@@ -869,7 +869,7 @@ class Account:
                     #test_str = "ABCDEFG"
                     hashed3 = fernet.encrypt(create_password_rec.get().encode())
                     # hashed3 = fernet.encrypt(test_str.encode())
-                    print(hashed3)
+                    # print(hashed3)
 
                     connection = sqlite3.connect("./database/DnetPower.db")
                     cur = connection.cursor()
