@@ -5,6 +5,7 @@ from tkinter import ttk
 from tkinter import messagebox
 import sqlite3
 
+#trying
 
 class Inventory:
     def __init__(self, admin_inventory_page):
