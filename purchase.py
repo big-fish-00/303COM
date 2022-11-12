@@ -58,8 +58,9 @@ class Purchase:
         x = (screen_width / 2) - (width / 2)
         y = (screen_height / 3.5) - (height / 3.5)
         purchase_page.geometry("%dx%d+%d+%d" % (width, height, x, y))
+        purchase_page.resizable(0, 0)
 
-        purchase_page.title('Purchase')
+        purchase_page.title('Invoice')
 
         purchase_page['bg'] = '#BBD0FF'
 
@@ -125,7 +126,7 @@ class Purchase:
             button(0, 80, 'H O M E', default_page)
             button(0, 120, 'I N V E N T O R Y', inventory)
             button(0, 160, 'S U P P L I E R', supplier)
-            button(0, 200, 'P U R C H A S E', purchase)
+            button(0, 200, 'I N V O I C E', purchase)
             button(0, 680, 'L O G O U T', logout)
 
             def close():
@@ -258,8 +259,8 @@ class Purchase:
 
         def random_bill_number(stringLength):
             lettersAndDigits = string.ascii_letters.upper() + string.digits
-            strr = ''.join(random.choice(lettersAndDigits) for i in range(stringLength - 2))
-            return ('BB' + strr)
+            count = ''.join(random.choice(lettersAndDigits) for i in range(stringLength - 2))
+            return ('BB' + count)
 
         def valid_phone(phone):
             if re.match(r"[789]\d{9}$", phone):
@@ -268,8 +269,8 @@ class Purchase:
 
         def add_cart():
             Scrolledtext.configure(state='normal')
-            strr = Scrolledtext.get('1.0', END)
-            if strr.find('Total') == -1:
+            count = Scrolledtext.get('1.0', END)
+            if count.find('Total') == -1:
                 product_name = productName_combo.get()
                 if product_name != "":
                     product_quantity = productQty_entry.get()
@@ -300,7 +301,7 @@ class Purchase:
             else:
                 Scrolledtext.delete('1.0', END)
                 new_line = []
-                li = strr.split('\n')
+                li = count.split('\n')
                 for z in range(len(li)):
                     if len(li[z]) != 0:
                         if li[z].find("Total") == -1:
@@ -313,7 +314,7 @@ class Purchase:
                     Scrolledtext.insert('insert', '\n')
 
                 product_name = productName_combo.get()
-                if (product_name != ""):
+                if product_name != "":
                     product_quantity = productQty_entry.get()
                     find_mrp = "SELECT stock_price, stock_quantity, stock_id FROM stock WHERE stock_name = ?"
                     cur.execute(find_mrp, [product_name])
@@ -340,8 +341,8 @@ class Purchase:
         def remove_cart():
             if (cart.isEmpty() != False):
                 Scrolledtext.configure(state="normal")
-                strr = Scrolledtext.get('1.0', END)
-                if strr.find('Total') == -1:
+                count = Scrolledtext.get('1.0', END)
+                if count.find('Total') == -1:
                     # Return -1 if sub is not found.
                     try:
                         cart.remove_item()
@@ -368,7 +369,7 @@ class Purchase:
                     else:
                         Scrolledtext.delete('1.0', END)
                         new_line = []
-                        line = strr.split('\n')
+                        line = count.split('\n')
                         for i in range(len(line)):
                             if len(line[i]) != 0:
                                 if line[i].find('Total') == -1:
@@ -392,8 +393,8 @@ class Purchase:
 
             else:
                 Scrolledtext.configure(state='normal')
-                strr = Scrolledtext.get('1.0', END)
-                if strr.find('Total') == -1:
+                count = Scrolledtext.get('1.0', END)
+                if count.find('Total') == -1:
                     Scrolledtext.configure(state='normal')
                     divided = "\n\n" + "\t" + ("——" * 20) + "\n"
                     Scrolledtext.insert('insert', divided)
@@ -410,7 +411,7 @@ class Purchase:
 
         def generate_bill():
             if state == 1:
-                strr = Scrolledtext.get('1.0', END)
+                count = Scrolledtext.get('1.0', END)
                 if cash_name.get() == "":
                     messagebox.showerror("Error", "Please enter cashier name", parent=purchase_page)
                 elif company_entry.get() == "":
@@ -420,7 +421,7 @@ class Purchase:
                 elif cart.isEmpty():
                     messagebox.showerror("Error", "Cart Empty", parent=purchase_page)
                 else:
-                    if strr.find('Total') == -1:
+                    if count.find('Total') == -1:
                         total_bill()
                         generate_bill()
                     else:
@@ -676,7 +677,7 @@ class Purchase:
         compContactText.place(x=1090, y=294)
 
         def leave():
-            close = messagebox.askyesno("Exit", "Are you sure you want to exit?", parent=inventory_page)
+            close = messagebox.askyesno("Exit", "Are you sure you want to exit?", parent=purchase_page)
             if close == True:
                 purchase_page.destroy()
 

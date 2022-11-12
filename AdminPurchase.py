@@ -60,8 +60,9 @@ class AdminPurchase:
         x = (screen_width / 2) - (width / 2)
         y = (screen_height / 3.5) - (height / 3.5)
         purchase_page.geometry("%dx%d+%d+%d" % (width, height, x, y))
+        purchase_page.resizable(0, 0)
 
-        purchase_page.title('Payment')
+        purchase_page.title('Invoice')
 
         purchase_page['bg'] = '#BBD0FF'
 
@@ -72,7 +73,7 @@ class AdminPurchase:
 
         def default_page():
             purchase_page.destroy()
-            filename = 'AdminHome.py.py'
+            filename = 'AdminHome.py'
             os.system(filename)
 
         def inventory():
@@ -137,7 +138,7 @@ class AdminPurchase:
             button(0, 80, 'H O M E', default_page)
             button(0, 120, 'I N V E N T O R Y', inventory)
             button(0, 160, 'S U P P L I E R', supplier)
-            button(0, 200, 'P U R C H A S E', purchase)
+            button(0, 200, 'I N V O I C E', purchase)
             button(0, 240, 'P A Y M E N T', bill_table)
             button(0, 280, 'F O R E C A S T', forecast_product)
             button(0, 680, 'L O G O U T', logout)
@@ -272,8 +273,8 @@ class AdminPurchase:
 
         def random_bill_number(stringLength):
             lettersAndDigits = string.ascii_letters.upper() + string.digits
-            strr = ''.join(random.choice(lettersAndDigits) for i in range(stringLength - 2))
-            return ('BB' + strr)
+            count = ''.join(random.choice(lettersAndDigits) for i in range(stringLength - 2))
+            return ('DN' + count)
 
         def valid_phone(phone):
             if re.match(r"[789]\d{9}$", phone):
@@ -282,8 +283,8 @@ class AdminPurchase:
 
         def add_cart():
             Scrolledtext.configure(state='normal')
-            strr = Scrolledtext.get('1.0', END)
-            if strr.find('Total') == -1:
+            count = Scrolledtext.get('1.0', END)
+            if count.find('Total') == -1:
                 product_name = productName_combo.get()
                 if product_name != "":
                     product_quantity = productQty_entry.get()
@@ -298,8 +299,7 @@ class AdminPurchase:
                             item = StockItem(product_name, mrp, int(product_quantity))
                             cart.add_item(item)
                             Scrolledtext.configure(state="normal")
-                            bill_text = "\n\t      {}\t\t\t    {}\t\t   {}\n".format(product_name, product_quantity,
-                                                                                      sp)
+                            bill_text = "\n\t      {}\t\t\t    {}\t\t   {}\n".format(product_name, product_quantity, sp)
                             Scrolledtext.insert("insert", bill_text)
                             Scrolledtext.configure(state='disable')
 
@@ -314,7 +314,7 @@ class AdminPurchase:
             else:
                 Scrolledtext.delete('1.0', END)
                 new_line = []
-                li = strr.split('\n')
+                li = count.split('\n')
                 for z in range(len(li)):
                     if len(li[z]) != 0:
                         if li[z].find("Total") == -1:
@@ -327,7 +327,7 @@ class AdminPurchase:
                     Scrolledtext.insert('insert', '\n')
 
                 product_name = productName_combo.get()
-                if (product_name != ""):
+                if product_name != "":
                     product_quantity = productQty_entry.get()
                     find_mrp = "SELECT stock_price, stock_quantity, stock_id FROM stock WHERE stock_name = ?"
                     cur.execute(find_mrp, [product_name])
@@ -354,8 +354,8 @@ class AdminPurchase:
         def remove_cart():
             if (cart.isEmpty() != False):
                 Scrolledtext.configure(state="normal")
-                strr = Scrolledtext.get('1.0', END)
-                if strr.find('Total') == -1:
+                count = Scrolledtext.get('1.0', END)
+                if count.find('Total') == -1:
                     # Return -1 if sub is not found.
                     try:
                         cart.remove_item()
@@ -382,7 +382,7 @@ class AdminPurchase:
                     else:
                         Scrolledtext.delete('1.0', END)
                         new_line = []
-                        line = strr.split('\n')
+                        line = count.split('\n')
                         for i in range(len(line)):
                             if len(line[i]) != 0:
                                 if line[i].find('Total') == -1:
@@ -406,8 +406,8 @@ class AdminPurchase:
 
             else:
                 Scrolledtext.configure(state='normal')
-                strr = Scrolledtext.get('1.0', END)
-                if strr.find('Total') == -1:
+                count = Scrolledtext.get('1.0', END)
+                if count.find('Total') == -1:
                     Scrolledtext.configure(state='normal')
                     divided = "\n\n" + "\t" + ("——" * 20) + "\n"
                     Scrolledtext.insert('insert', divided)
@@ -422,19 +422,25 @@ class AdminPurchase:
         def generate_bill():
             state = 1
             if state == 1:
-                strr = Scrolledtext.get('1.0', END)
+                count = Scrolledtext.get('1.0', END)
+
                 if cash_name.get() == "":
                     messagebox.showerror("Error", "Please enter cashier name", parent=purchase_page)
+
                 elif company_entry.get() == "":
                     messagebox.showerror("Error", "Please enter company number", parent=purchase_page)
+
                 elif not valid_phone(company_entry.get()):
                     messagebox.showerror("Error", 'Please enter a valid number', parent=purchase_page)
+
                 elif cart.isEmpty():
                     messagebox.showerror("Error", "Cart Empty", parent=purchase_page)
+
                 else:
-                    if strr.find('Total') == -1:
+                    if count.find('Total') == -1:
                         total_bill()
                         generate_bill()
+
                     else:
                         cashNameText.insert(END, cash_name.get())
 
@@ -463,7 +469,8 @@ class AdminPurchase:
                             cur = Db.cursor()
 
                         insert = ("INSERT INTO Purchase (purchase_product_name, purchase_brand, purchase_quantity,"
-                                  "purchase_time,purchase_billnm,purchase_cashier_name,purchase_status) VALUES(?,?,?,?,?,?,?)")
+                                  "purchase_time,purchase_billnm,purchase_cashier_name,purchase_status) VALUES(?,?,?,"
+                                  "?,?,?,?)")
                         cur.execute(insert, [productName_combo.get(), productBrand_combo.get(), productQty_entry.get(),
                                              purchaseDate_entry.get(), bill_num.get(), cash_name.get(),
                                              purchaseStatus_combo.get()])
@@ -564,18 +571,18 @@ class AdminPurchase:
                         _gEmailApi = googleEmail.googleEmailApi()
                         # msg = _gEmailApi.create_message("demofyp00@gmail.com", "demofyp00@gmail.com", "test", "Hello")
                         # print(rf"{root.filename}")
-                        msg = _gEmailApi.create_message_with_attachment("demofyp00@gmail.com", customerEmail_entry.get(), "Receipt", "Hello",
+                        msg = _gEmailApi.create_message_with_attachment("demofyp00@gmail.com", customerEmail_entry.get(), "Invoice", "Hello",
                                                                         rf"{root.filename}")
                         _gEmailApi.send_message("demofyp00@gmail.com", msg)
                         root.destroy()
-                        messagebox.showinfo("Success", "Receipt send successful.")
+                        messagebox.showinfo("Success", "Invoice send successful.")
 
-                notification = Label(root, text="Below will send the attachement to customer email.\n\n "
+                notification = Label(root, text="Below will send the attachment to customer email.\n\n "
                                                 "Kindly ensure email before send.\n\n"
                                                 "Have a nice day :D ", font=("Poppins SemiBold", 11, 'italic'),
                                      background='#BBD0FF')
                 notification.place(x=25, y=70)
-                send = Button(root, text="Send Quotation", font=("Poppins SemiBold", 10, 'italic'),
+                send = Button(root, text="Send Invoice", font=("Poppins SemiBold", 10, 'italic'),
                               bg='white', fg='black', activebackground='#BBD0FF', width=15, border=0, cursor='hand2',
                               justify=CENTER, command=sendEmail)
                 send.place(x=120, y=200)
@@ -698,13 +705,13 @@ class AdminPurchase:
         clearCart.place(x=285, y=670)
 
         def print_pdf(text):
-            #tempfile - create a temporary file in a safe manner
+            # tempfile - create a temporary file in a safe manner
             # mktemp - create a temporary file or directory
             file = tempfile.mktemp('.txt')
             open(file, 'w').write(text)
             os.startfile(file, 'print')
 
-        printBill = Button(purchase_page, text="Print", font=("Poppins SemiBold", 10, 'italic'),
+        printBill = Button(purchase_page, text="Save", font=("Poppins SemiBold", 10, 'italic'),
                            bg='white', fg='black', activebackground='#BBD0FF', width=10, border=0, cursor='hand2',
                            justify=CENTER, command=lambda: print_pdf(Scrolledtext.get('1.0', END)))
         printBill.place(x=385, y=670)

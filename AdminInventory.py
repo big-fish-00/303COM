@@ -19,6 +19,7 @@ class Inventory:
         x = (screen_width / 2) - (width / 2)
         y = (screen_height / 3.5) - (height / 3.5)
         admin_inventory_page.geometry("%dx%d+%d+%d" % (width, height, x, y))
+        admin_inventory_page.resizable(0, 0)
 
         admin_inventory_page.title('Inventory')
 
@@ -26,7 +27,7 @@ class Inventory:
 
         def default_page():
             admin_inventory_page.destroy()
-            filename = 'AdminHome.py.py'
+            filename = 'AdminHome.py'
             os.system(filename)
 
         def inventory():
@@ -193,6 +194,52 @@ class Inventory:
         def add_stock():
             if id_entry.get() == "":
                 messagebox.showerror("Failed", "ID can't be empty")
+
+            elif not any(num.isdigit() for num in id_entry.get()):
+                messagebox.showerror("Failed", "ID must be a number")
+
+            elif name_entry.get() == "":
+                messagebox.showerror("Failed", "Stock Name can't be empty")
+
+            elif descrip_entry.get() == "":
+                messagebox.showerror("Failed", "Description can't be empty")
+
+            elif group_entry.get() == "":
+                messagebox.showerror("Failed", "Group can't be empty")
+
+            elif brand_entry.get() == "":
+                messagebox.showerror("Failed", "Brand can't be empty")
+
+            elif price_entry.get() == "":
+                messagebox.showerror("Failed", "Price can't be empty")
+
+            elif not any(num.isdigit() for num in price_entry.get()):
+                messagebox.showerror("Failed", "Invalid Price")
+
+            elif qty_entry.get() == "":
+                messagebox.showerror("Failed", "Quantity can't be empty")
+
+            elif not any(num.isdigit() for num in qty_entry.get()):
+                messagebox.showerror("Failed", "Invalid Quantity")
+
+            elif date_entry.get() == "":
+                messagebox.showerror("Failed", "Date can't be empty")
+
+            elif supplier_entry.get() == "":
+                messagebox.showerror("Failed", "Supplier can't be empty")
+
+            elif document_entry.get() == "":
+                messagebox.showerror("Failed", "Document NO can't be empty")
+
+            elif discount_entry.get() == "":
+                messagebox.showerror("Failed", "Discount can't be empty")
+
+            elif total_entry.get() == "":
+                messagebox.showerror("Failed", "Total price can't be empty")
+
+            elif not any(num.isdigit() for num in total_entry.get()):
+                messagebox.showerror("Failed", "Invalid Total Price")
+
             else:
                 conn = sqlite3.connect("./database/DnetPower.db")
                 cur = conn.cursor()
@@ -502,7 +549,7 @@ class Inventory:
         tree_table.tag_configure('evenrow', background="lightblue")
 
         # Create label frame
-        search_frame = LabelFrame(admin_inventory_page, text="Search Stock Name", font=("Comic Sans MS", 15, 'italic'),
+        search_frame = LabelFrame(admin_inventory_page, text="Search Stock Name", font=("Poppins SemiBold", 15, 'italic'),
                                   background='#BBD0FF')
         search_frame.pack(fill="x", padx=20)
         search_frame.place(x=20, y=360)
@@ -514,47 +561,47 @@ class Inventory:
         search_button.grid(row=0, column=1, padx=10, pady=10)
 
         # Add Record Entry Boxes
-        info_frame = LabelFrame(admin_inventory_page, text="Stock", font=("Comic Sans MS", 15, 'italic'),
+        info_frame = LabelFrame(admin_inventory_page, text="Stock", font=("Poppins SemiBold", 15, 'italic'),
                                 background='#BBD0FF')
         info_frame.pack(fill="x", padx=20, pady=(20, 0))
 
-        id_label = Label(info_frame, text="ID", font=("Comic Sans MS", 10, 'italic'), background='#BBD0FF')
+        id_label = Label(info_frame, text="ID", font=("Poppins SemiBold", 10, 'italic'), background='#BBD0FF')
         id_label.grid(row=0, column=0, padx=8, pady=10)
         id_entry = Entry(info_frame)
         id_entry.grid(row=0, column=1, padx=10, pady=10)
 
-        name_label = Label(info_frame, text="Name", font=("Comic Sans MS", 10, 'italic'), background='#BBD0FF')
+        name_label = Label(info_frame, text="Name", font=("Poppins SemiBold", 10, 'italic'), background='#BBD0FF')
         name_label.grid(row=0, column=2, padx=8, pady=10)
         name_entry = Entry(info_frame)
         name_entry.grid(row=0, column=3, padx=10, pady=10)
 
-        descrip_label = Label(info_frame, text="Description", font=("Comic Sans MS", 10, 'italic'),
+        descrip_label = Label(info_frame, text="Description", font=("Poppins SemiBold", 10, 'italic'),
                               background='#BBD0FF')
         descrip_label.grid(row=0, column=4, padx=8, pady=10)
         descrip_entry = Entry(info_frame)
         descrip_entry.grid(row=0, column=5, padx=10, pady=10)
 
-        group_label = Label(info_frame, text="Group", font=("Comic Sans MS", 10, 'italic'), background='#BBD0FF')
+        group_label = Label(info_frame, text="Group", font=("Poppins SemiBold", 10, 'italic'), background='#BBD0FF')
         group_label.grid(row=0, column=6, padx=8, pady=10)
         group_entry = Entry(info_frame)
         group_entry.grid(row=0, column=7, padx=10, pady=10)
 
-        brand_label = Label(info_frame, text="Brand", font=("Comic Sans MS", 10, 'italic'), background='#BBD0FF')
+        brand_label = Label(info_frame, text="Brand", font=("Poppins SemiBold", 10, 'italic'), background='#BBD0FF')
         brand_label.grid(row=0, column=8, padx=8, pady=10)
         brand_entry = Entry(info_frame)
         brand_entry.grid(row=0, column=9, padx=10, pady=10)
 
-        price_label = Label(info_frame, text="Price", font=("Comic Sans MS", 10, 'italic'), background='#BBD0FF')
+        price_label = Label(info_frame, text="Price", font=("Poppins SemiBold", 10, 'italic'), background='#BBD0FF')
         price_label.grid(row=0, column=10, padx=8, pady=10)
         price_entry = Entry(info_frame)
         price_entry.grid(row=0, column=11, padx=10, pady=10)
 
-        qty_label = Label(info_frame, text="Quantity", font=("Comic Sans MS", 10, 'italic'), background='#BBD0FF')
+        qty_label = Label(info_frame, text="Quantity", font=("Poppins SemiBold", 10, 'italic'), background='#BBD0FF')
         qty_label.grid(row=1, column=0, padx=8, pady=10)
         qty_entry = Entry(info_frame)
         qty_entry.grid(row=1, column=1, padx=10, pady=10)
 
-        date_label = Label(info_frame, text="Date", font=("Comic Sans MS", 10, 'italic'), background='#BBD0FF')
+        date_label = Label(info_frame, text="Date", font=("Poppins SemiBold", 10, 'italic'), background='#BBD0FF')
         date_label.grid(row=1, column=2, padx=8, pady=10)
         date_entry = Entry(info_frame)
         date_entry.grid(row=1, column=3, padx=10, pady=10)
@@ -568,70 +615,69 @@ class Inventory:
         supplier_entry.grid(row=1, column=5, padx=10, pady=10)
         # supplier_entry.current(0)
 
-
-        document_label = Label(info_frame, text="Document NO", font=("Comic Sans MS", 10, 'italic'),
+        document_label = Label(info_frame, text="Document NO", font=("Poppins SemiBold", 10, 'italic'),
                                background='#BBD0FF')
         document_label.grid(row=1, column=6, padx=8, pady=10)
         document_entry = ttk.Combobox(info_frame, state="disable", textvariable=opt2, background='white')
         document_entry.grid(row=1, column=7, padx=10, pady=10)
         # document_entry.current(0)
 
-        discount_label = Label(info_frame, text="Discount", font=("Comic Sans MS", 10, 'italic'), background='#BBD0FF')
+        discount_label = Label(info_frame, text="Discount", font=("Poppins SemiBold", 10, 'italic'), background='#BBD0FF')
         discount_label.grid(row=1, column=8, padx=8, pady=10)
         discount_entry = Entry(info_frame)
         discount_entry.grid(row=1, column=9, padx=10, pady=10)
 
-        total_label = Label(info_frame, text="Total Price", font=("Comic Sans MS", 10, 'italic'), background='#BBD0FF')
+        total_label = Label(info_frame, text="Total Price", font=("Poppins SemiBold", 10, 'italic'), background='#BBD0FF')
         total_label.grid(row=1, column=10, padx=8, pady=10)
         total_entry = Entry(info_frame)
         total_entry.grid(row=1, column=11, padx=10, pady=10)
 
         # Add Buttons
-        button_frame = LabelFrame(admin_inventory_page, text="Commands", font=("Comic Sans MS", 15, 'italic'),
+        button_frame = LabelFrame(admin_inventory_page, text="Commands", font=("Poppins SemiBold", 15, 'italic'),
                                   background='#BBD0FF')
         button_frame.pack(fill="x", padx=20, pady=(30, 0))
 
-        update_button = Button(button_frame, text="Update Record", font=("Comic Sans MS", 10, 'italic'),
+        update_button = Button(button_frame, text="Update Stock", font=("Poppins SemiBold", 10, 'italic'),
                                bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
                                justify=CENTER, command=update_stock)
         update_button.grid(row=0, column=0, padx=30, pady=8)
 
-        add_button = Button(button_frame, text="Add Record", font=("Comic Sans MS", 10, 'italic'),
+        add_button = Button(button_frame, text="Add Stock", font=("Poppins SemiBold", 10, 'italic'),
                             bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
                             justify=CENTER, command=add_stock)
         add_button.grid(row=0, column=1, padx=30, pady=8)
 
-        remove_all_button = Button(button_frame, text="Remove All Records", font=("Comic Sans MS", 10, 'italic'),
+        remove_all_button = Button(button_frame, text="Remove All Stocks", font=("Poppins SemiBold", 10, 'italic'),
                                    bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
                                    justify=CENTER, command=delete_all)
         remove_all_button.grid(row=0, column=2, padx=30, pady=8)
 
-        remove_one_button = Button(button_frame, text="Remove One Selected", font=("Comic Sans MS", 10, 'italic'),
+        remove_one_button = Button(button_frame, text="Remove One Selected", font=("Poppins SemiBold", 10, 'italic'),
                                    bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
                                    justify=CENTER, command=delete_data)
         remove_one_button.grid(row=0, column=3, padx=30, pady=8)
 
-        remove_many_button = Button(button_frame, text="Remove Many Selected", font=("Comic Sans MS", 10, 'italic'),
+        remove_many_button = Button(button_frame, text="Remove Many Selected", font=("Poppins SemiBold", 10, 'italic'),
                                     bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
                                     justify=CENTER, command=delete_mny_data)
         remove_many_button.grid(row=0, column=4, padx=30, pady=8)
 
-        move_up_button = Button(button_frame, text="Move Up", font=("Comic Sans MS", 10, 'italic'),
+        move_up_button = Button(button_frame, text="Move Up", font=("Poppins SemiBold", 10, 'italic'),
                                 bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
                                 justify=CENTER, command=move_up)
         move_up_button.grid(row=0, column=5, padx=30, pady=8)
 
-        move_down_button = Button(button_frame, text="Move Down", font=("Comic Sans MS", 10, 'italic'),
+        move_down_button = Button(button_frame, text="Move Down", font=("Poppins SemiBold", 10, 'italic'),
                                   bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
                                   justify=CENTER, command=move_down)
         move_down_button.grid(row=0, column=6, padx=30, pady=8)
 
-        select_record_button = Button(button_frame, text="Clear All", font=("Comic Sans MS", 10, 'italic'),
+        select_record_button = Button(button_frame, text="Clear All", font=("Poppins SemiBold", 10, 'italic'),
                                       bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
                                       justify=CENTER, command=clear_data)
         select_record_button.grid(row=0, column=7, padx=30, pady=8)
 
-        reset_button = Button(button_frame, text="Reset", font=("Comic Sans MS", 10, 'italic'),
+        reset_button = Button(button_frame, text="Reset", font=("Poppins SemiBold", 10, 'italic'),
                               bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
                               justify=CENTER, command=query_database)
         reset_button.grid(row=0, column=8, padx=30, pady=8)

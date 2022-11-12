@@ -23,7 +23,7 @@ root.config(background='#BBD0FF')
 root.wm_attributes('-topmost', True)
 
 # Welcome Page
-greeting_word = Label(text='Dnet Power Computer Center', bg='#BBD0FF', font=("Comic Sans MS", 15, 'italic'), fg='black')
+greeting_word = Label(text='Dnet Power Computer Centre', bg='#BBD0FF', font=("Comic Sans MS", 15, 'italic'), fg='black')
 # greeting_word.pack(side="top")
 greeting_word.place(x=140 , y=80)
 

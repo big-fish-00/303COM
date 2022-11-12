@@ -25,7 +25,7 @@ class Account:
         logo = Image.open('images\\logo.jpg')
         logo2 = ImageTk.PhotoImage(logo)
         root.iconphoto(True, logo2)
-        root.title("Dnet Power Computer Center")
+        root.title("Dnet Power Computer Centre")
 
         # Navigating through windows
         select_account_page = Frame(root)
@@ -54,7 +54,7 @@ class Account:
         employee_photo_place.place(x=70, y=200)
 
         # EMPLOYEE BUTTON
-        employee_Button = Button(select_account_page, text="Employee", font=("Comic Sans MS", 11, 'italic'),
+        employee_Button = Button(select_account_page, text="Employee", font=("Poppins SemiBold", 12, 'italic'),
                                  bg='black', fg='white', activebackground='white', width=20, border=0, cursor='hand2',
                                  justify=CENTER, command=lambda: show_frame(login_account_employee_page))
         employee_Button.place(x=30, y=350)
@@ -72,7 +72,7 @@ class Account:
         admin_photo_place.place(x=325, y=200)
 
         # ADMIN BUTTON
-        admin_Button = Button(select_account_page, text="Admin", font=("Comic Sans MS", 11, 'italic'),
+        admin_Button = Button(select_account_page, text="Admin", font=("Poppins SemiBold", 12, 'italic'),
                               bg='black', fg='white', activebackground='white', width=20, border=0, cursor='hand2',
                               justify=CENTER, command=lambda: show_frame(login_account_admin_page))
         admin_Button.place(x=285, y=350)
@@ -96,7 +96,7 @@ class Account:
 
         # LOGIN BLOCK
         wel = "Welcome to Dnet Power"
-        top = Label(login_account_employee_page, text=wel, font=("Comic Sans MS", 15, 'italic'),
+        top = Label(login_account_employee_page, text=wel, font=("Poppins SemiBold", 15, 'italic'),
                     bg='#BBD0FF', fg='#040405')
         top.place(x=140, y=100)
 
@@ -122,9 +122,9 @@ class Account:
                 find_pass = 'SELECT employee_password FROM Employee_Account'
                 cursor.execute(find_pass)
                 pass_result = cursor.fetchall()
-                print(pass_result)
+                # print(pass_result)
                 new = [item for t in pass_result for item in t]
-                print(f"Test {new}")
+                # print(f"Test {new}")
                 # for decrypt
                 key = b'qVnbM24duboqndhyHznH9hrd5IqLl5PjD8fspYKGI8Y='
                 fernet = Fernet(key)
@@ -157,13 +157,13 @@ class Account:
                 u_employee_rec.insert(0, 'Enter Username')
 
         user_employee = "Uername"
-        u_employee_label = Label(login_account_employee_page, text=user_employee, font=("Comic Sans MS", 11,
+        u_employee_label = Label(login_account_employee_page, text=user_employee, font=("Poppins SemiBold", 11,
                                                                                         'italic'), bg='#BBD0FF',
                                  fg='#040405')
         u_employee_label.place(x=160, y=180)
 
         u_employee_rec = Entry(login_account_employee_page, width=22, fg='#5a5a5a', relief=GROOVE, bg='white',
-                               font=("Comic Sans MS", 11, 'italic'), textvariable=User_employee)
+                               font=("Poppins SemiBold", 11, 'italic'), textvariable=User_employee)
         u_employee_rec.insert(0, 'Enter Username')
         u_employee_rec.bind('<FocusIn>', enter)
         u_employee_rec.bind('<FocusOut>', leave)
@@ -187,12 +187,12 @@ class Account:
                 p_employee_rec.insert(0, 'Enter Password')
 
         secret = "Password"
-        p_employee_label = Label(login_account_employee_page, text=secret, font=("Comic Sans MS", 11, 'italic'),
+        p_employee_label = Label(login_account_employee_page, text=secret, font=("Poppins SemiBold", 11, 'italic'),
                                  bg='#BBD0FF', fg='#040405')
         p_employee_label.place(x=165, y=260)
 
         p_employee_rec = Entry(login_account_employee_page, width=22, fg='#5a5a5a', relief=GROOVE, border=2,
-                               bg='white', font=("Comic Sans MS", 11, 'italic'), textvariable=Password_employee)
+                               bg='white', font=("Poppins SemiBold", 11, 'italic'), textvariable=Password_employee)
         p_employee_rec.insert(0, 'Enter Password')
         p_employee_rec.bind('<FocusIn>', enter)
         p_employee_rec.bind('<FocusOut>', leave)
@@ -221,7 +221,7 @@ class Account:
         show_pass.place(x=350, y=291)
 
         # LOGIN BUTTON
-        login_employee_button = Button(login_account_employee_page, text="LOGIN", font=("Comic Sans MS", 11, 'italic'),
+        login_employee_button = Button(login_account_employee_page, text="LOGIN", font=("Poppins SemiBold", 11, 'italic'),
                                        bg='black', fg='white', activebackground='white', width=25, border=0,
                                        cursor='hand2',
                                        justify=CENTER, command=login_employee_database)
@@ -246,7 +246,7 @@ class Account:
             employee_forget_frame = LabelFrame(window_ef, bg="#BBD0FF", width='400', height=400)
             employee_forget_frame.place(x=55, y=55)
 
-            employee_forget_word = Label(window_ef, text='Reset Password', font=("Comic Sans MS", 15, 'italic'),
+            employee_forget_word = Label(window_ef, text='Reset Password', font=("Poppins SemiBold", 15, 'italic'),
                                 bg='#BBD0FF', fg='#040405')
             employee_forget_word.place(x=180, y=65)
 
@@ -259,7 +259,7 @@ class Account:
                     employee_forget_password_rec.config(show="")
                     employee_forget_password_rec_2.config(show="")
 
-            show_pass5 = Checkbutton(window_ef, text='Show Password', font=("Comic Sans MS", 11, 'italic'),
+            show_pass5 = Checkbutton(window_ef, text='Show Password', font=("Poppins SemiBold", 11, 'italic'),
                                      bg='#BBD0FF', activebackground='#BBD0FF',
                                      command=show_password5,
                                      cursor='hand2')
@@ -283,12 +283,12 @@ class Account:
 
             # USERNAME
             employee_forget_page_user = Label(window_ef, text='Enter Username', bg='#BBD0FF', fg='#040405',
-                                              font=("Comic Sans MS", 11, 'italic'))
+                                              font=("Poppins SemiBold", 11, 'italic'))
             employee_forget_page_user.place(x=175, y=125)
 
             employee_forget_username_rec = Entry(window_ef, width=22, fg='#5a5a5a', relief=GROOVE, bg='white',
                                                  highlightthickness=2, textvariable=employee_username_forget,
-                                                 font=("Comic Sans MS", 11, 'italic'))
+                                                 font=("Poppins SemiBold", 11, 'italic'))
             employee_forget_username_rec.place(x=150, y=155)
 
             # PASSWORD ICON
@@ -301,11 +301,11 @@ class Account:
 
             # PASSWORD
             employee_forget_password = Label(window_ef, text='Enter New Password', bg='#BBD0FF', fg='#040405',
-                                             font=("Comic Sans MS", 11, 'italic'))
+                                             font=("Poppins SemiBold", 11, 'italic'))
             employee_forget_password.place(x=175, y=190)
             employee_forget_password_rec = Entry(window_ef, width=22, fg='#5a5a5a', relief=GROOVE, bg='white',
                                                  highlightthickness=2, textvariable=employee_password_forget,
-                                                 show="", font=("Comic Sans MS", 11, 'italic'))
+                                                 show="", font=("Poppins SemiBold", 11, 'italic'))
             employee_forget_password_rec.place(x=150, y=220)
 
 
@@ -319,11 +319,11 @@ class Account:
 
             # REENTER PASSWORD
             employee_forget_password_2 = Label(window_ef, text='Reset Password', bg='#BBD0FF', fg='#040405',
-                                               font=("Comic Sans MS", 11, 'italic'))
+                                               font=("Poppins SemiBold", 11, 'italic'))
             employee_forget_password_2.place(x=185, y=255)
             employee_forget_password_rec_2 = Entry(window_ef, width=22, fg='#5a5a5a', relief=GROOVE, bg='white',
                                                    highlightthickness=2, textvariable=employee_reenter_password,
-                                                   show="", font=("Comic Sans MS", 11, 'italic'))
+                                                   show="", font=("Poppins SemiBold", 11, 'italic'))
             employee_forget_password_rec_2.place(x=150, y=285)
 
             def update_employee_password():
@@ -372,7 +372,7 @@ class Account:
                                 key = b'qVnbM24duboqndhyHznH9hrd5IqLl5PjD8fspYKGI8Y='
                                 fernet = Fernet(key)
                                 hashed = fernet.encrypt(employee_forget_password_rec.get().encode())
-                                print(hashed)
+                                # print(hashed)
                                 connect = sqlite3.connect('database/DnetPower.db')
                                 curs = connect.cursor()
                                 update = 'update Employee_Account set employee_password=? WHERE employee_username =? '
@@ -396,14 +396,14 @@ class Account:
                     messagebox.showerror('Sign Up Status', message)
 
             # SUBMIT BUTTON
-            employee_forget_button = Button(window_ef, text='Reset', font=("Comic Sans MS", 11, 'italic'),
+            employee_forget_button = Button(window_ef, text='Reset', font=("Poppins SemiBold", 11, 'italic'),
                                             bg='black', fg='white', activebackground='white', width=25, border=0, cursor='hand2',
                                             justify=CENTER, command=lambda: update_employee_password())
             employee_forget_button.place(x=140, y=370)
 
         # FORGET PASSWORD
         employee_forget_pass_button = Button(login_account_employee_page, text="Forget Password",
-                                             font=("Comic Sans MS", 10, 'italic'),
+                                             font=("Poppins SemiBold", 10, 'italic'),
                                              bg='#BBD0FF', fg='black', activebackground='#BBD0FF', width=25, border=0,
                                              cursor='hand2', justify=CENTER,
                                              command=lambda: employee_forget_password_page())
@@ -431,7 +431,7 @@ class Account:
 
         # LOGIN BLOCK
         wel = "Welcome to Dnet Power"
-        top = Label(login_account_admin_page, text=wel, font=("Comic Sans MS", 15, 'italic'),
+        top = Label(login_account_admin_page, text=wel, font=("Poppins SemiBold", 15, 'italic'),
                     bg='#BBD0FF', fg='#040405')
         top.place(x=140, y=100)
 
@@ -452,9 +452,9 @@ class Account:
                 find_pass = 'SELECT admin_password FROM Admin_Account'
                 cursor.execute(find_pass)
                 pass_result = cursor.fetchall()
-                print(pass_result)
+                # print(pass_result)
                 new = [item for t in pass_result for item in t]
-                print(f"Test {new}")
+                # print(f"Test {new}")
                 key = b'qVnbM24duboqndhyHznH9hrd5IqLl5PjD8fspYKGI8Y='
                 fernet = Fernet(key)
                 for i in new:
@@ -490,12 +490,12 @@ class Account:
                 u_rec.insert(0, 'Enter Username')
 
         user = "Uername"
-        u_label = Label(login_account_admin_page, text=user, font=("Comic Sans MS", 11, 'italic'),
+        u_label = Label(login_account_admin_page, text=user, font=("Poppins SemiBold", 11, 'italic'),
                         bg='#BBD0FF', fg='#040405')
         u_label.place(x=160, y=180)
 
         u_rec = Entry(login_account_admin_page, width=22, fg='#5a5a5a', relief=GROOVE, bg='white',
-                      font=("Comic Sans MS", 11, 'italic'), textvariable=User)
+                      font=("Poppins SemiBold", 11, 'italic'), textvariable=User)
         u_rec.insert(0, 'Enter Username')
         u_rec.bind('<FocusIn>', enter)
         u_rec.bind('<FocusOut>', leave)
@@ -519,12 +519,12 @@ class Account:
                 p_rec.insert(0, 'Enter Password')
 
         secret = "Password"
-        p_label = Label(login_account_admin_page, text=secret, font=("Comic Sans MS", 11, 'italic'),
+        p_label = Label(login_account_admin_page, text=secret, font=("Poppins SemiBold", 11, 'italic'),
                         bg='#BBD0FF', fg='#040405')
         p_label.place(x=165, y=260)
 
         p_rec = Entry(login_account_admin_page, width=22, fg='#5a5a5a', relief=GROOVE, border=2, bg='white',
-                      font=("Comic Sans MS", 11, 'italic'), textvariable=Password)
+                      font=("Poppins SemiBold", 11, 'italic'), textvariable=Password)
         p_rec.insert(0, 'Enter Password')
         p_rec.bind('<FocusIn>', enter)
         p_rec.bind('<FocusOut>', leave)
@@ -553,20 +553,20 @@ class Account:
         show_pass2.place(x=350, y=291)
 
         # LOGIN BUTTON
-        login_button = Button(login_account_admin_page, text="LOGIN", font=("Comic Sans MS", 11, 'italic'),
+        login_button = Button(login_account_admin_page, text="LOGIN", font=("Poppins SemiBold", 11, 'italic'),
                               bg='black', fg='white', activebackground='white', width=25, border=0, cursor='hand2',
                               justify=CENTER, command=login_database)
         login_button.place(x=135, y=370)
 
         # SEPARATE LINE
         alr_create_word = Label(login_account_admin_page, text="Do not have an account?",
-                                font=("Comic Sans MS", 8, 'italic'), bg='#BBD0FF',
+                                font=("Poppins SemiBold", 8, 'italic'), bg='#BBD0FF',
                                 fg='#696969')
         alr_create_word.place(x=120, y=424)
 
         # CREATE ACCOUNT BUTTON
         create_button = Button(login_account_admin_page, text="Create New Account",
-                               font=("Comic Sans MS", 10, 'italic'),
+                               font=("Poppins SemiBold", 10, 'italic'),
                                bg='#BBD0FF', fg='black', activebackground='#BBD0FF', width=18, border=0, cursor='hand2',
                                justify=CENTER, command=lambda: show_frame(create_account_page))
         create_button.place(x=250, y=420)
@@ -592,7 +592,7 @@ class Account:
             forget_frame = LabelFrame(window, bg="#BBD0FF", width='400', height=400)
             forget_frame.place(x=55, y=55)
 
-            forget_word = Label(window, text='Reset Password', font=("Comic Sans MS", 15, 'italic'),
+            forget_word = Label(window, text='Reset Password', font=("Poppins SemiBold", 15, 'italic'),
                                 bg='#BBD0FF', fg='#040405')
             forget_word.place(x=180, y=65)
 
@@ -605,7 +605,7 @@ class Account:
                     forget_password_rec.config(show="")
                     forget_password_rec_2.config(show="")
 
-            show_pass3 = Checkbutton(window, text='Show Password', font=("Comic Sans MS", 11, 'italic'),
+            show_pass3 = Checkbutton(window, text='Show Password', font=("Poppins SemiBold", 11, 'italic'),
                                      bg='#BBD0FF', activebackground='#BBD0FF',
                                      command=show_password3,
                                      cursor='hand2')
@@ -629,12 +629,12 @@ class Account:
 
             # USERNAME
             forget_page_user = Label(window, text='Enter Username', bg='#BBD0FF', fg='#040405',
-                                     font=("Comic Sans MS", 11, 'italic'))
+                                     font=("Poppins SemiBold", 11, 'italic'))
             forget_page_user.place(x=175, y=125)
 
             forget_username_rec = Entry(window, width=22, fg='#5a5a5a', relief=GROOVE, bg='white',
                                         highlightthickness=2, textvariable=username_forget,
-                                        font=("Comic Sans MS", 11, 'italic'))
+                                        font=("Poppins SemiBold", 11, 'italic'))
             forget_username_rec.place(x=150, y=155)
 
             # PASSWORD ICON
@@ -647,11 +647,11 @@ class Account:
 
             # PASSWORD
             forget_password = Label(window, text='Enter New Password', bg='#BBD0FF', fg='#040405',
-                                    font=("Comic Sans MS", 11, 'italic'))
+                                    font=("Poppins SemiBold", 11, 'italic'))
             forget_password.place(x=175, y=190)
             forget_password_rec = Entry(window, width=22, fg='#5a5a5a', relief=GROOVE, bg='white',
                                         highlightthickness=2, textvariable=password_forget,
-                                        show="", font=("Comic Sans MS", 11, 'italic'))
+                                        show="", font=("Poppins SemiBold", 11, 'italic'))
             forget_password_rec.place(x=150, y=220)
 
             # REENTER PASSWORD ICON
@@ -664,11 +664,11 @@ class Account:
 
             # REENTER PASSWORD
             forget_password_2 = Label(window, text='Reset Password', bg='#BBD0FF', fg='#040405',
-                                      font=("Comic Sans MS", 11, 'italic'))
+                                      font=("Poppins SemiBold", 11, 'italic'))
             forget_password_2.place(x=175, y=255)
             forget_password_rec_2 = Entry(window, width=22, fg='#5a5a5a', relief=GROOVE, bg='white',
                                           highlightthickness=2, textvariable=reenter_password,
-                                          show="", font=("Comic Sans MS", 11, 'italic'))
+                                          show="", font=("Poppins SemiBold", 11, 'italic'))
             forget_password_rec_2.place(x=150, y=285)
 
             def update_password():
@@ -741,14 +741,14 @@ class Account:
                     messagebox.showerror('Sign Up Status', msg)
 
             # SUBMIT BUTTON
-            forget_button = Button(window, text='Reset', font=("Comic Sans MS", 11, 'italic'),
+            forget_button = Button(window, text='Reset', font=("Poppins SemiBold", 11, 'italic'),
                                    bg='black', fg='white', activebackground='white', width=25, border=0, cursor='hand2',
                                    justify=CENTER, command=lambda: update_password())
             forget_button.place(x=140, y=370)
 
         # FORGET PASSWORD
         forget_pass_button = Button(login_account_admin_page, text="Forget Password",
-                                    font=("Comic Sans MS", 10, 'italic'),
+                                    font=("Poppins SemiBold", 10, 'italic'),
                                     bg='#BBD0FF', fg='black', activebackground='#BBD0FF', width=25, border=0,
                                     cursor='hand2',
                                     justify=CENTER, command=lambda: forget_password_page())
@@ -764,7 +764,7 @@ class Account:
         create_frame.place(x=105, y=28)
 
         # CREATE ACCOUNT HEADING
-        create_top = Label(create_account_page, text='Create Your Account', font=("Comic Sans MS", 15, 'italic'),
+        create_top = Label(create_account_page, text='Create Your Account', font=("Poppins SemiBold", 15, 'italic'),
                            bg='#BBD0FF')
         create_top.place(x=160, y=38)
 
@@ -828,7 +828,7 @@ class Account:
                     empty = 'Require at least 1 uppercase character in password'
 
                 else:
-                    print(create_password_rec.get())
+                    # print(create_password_rec.get())
                     counter += 1
 
             if create_contact_rec.get() == "":
@@ -838,11 +838,11 @@ class Account:
                 if len(create_contact_rec.get()) <= 9:
                     empty = 'Contact Number too short'
 
-                elif len(create_contact_rec.get()) >= 13:
+                elif len(create_contact_rec.get()) >= 12:
                     empty = 'Contact Number too long'
 
                 elif not any(contact.isdigit() for contact in create_contact_rec.get()):
-                    empty = 'Contact number must be in an integer'
+                    empty = 'Contact number must be in number not word'
 
                 else:
                     counter += 1
@@ -900,10 +900,10 @@ class Account:
 
         # NAME
         create_name = Label(create_account_page, text='Enter name', bg='#BBD0FF', fg='#040405',
-                            font=("Comic Sans MS", 11, 'italic'))
+                            font=("Poppins SemiBold", 11, 'italic'))
         create_name.place(x=145, y=90)
         create_name_rec = Entry(create_account_page, width=22, fg='#5a5a5a', relief=GROOVE, bg='white',
-                                font=("Comic Sans MS", 11, 'italic'), highlightthickness=2, textvariable=name)
+                                font=("Poppins SemiBold", 11, 'italic'), highlightthickness=2, textvariable=name)
         create_name_rec.place(x=120, y=120)
 
         # USERNAME ICON
@@ -916,11 +916,11 @@ class Account:
 
         # USERNAME
         create_user = Label(create_account_page, text='Enter username', bg='#BBD0FF', fg='#040405',
-                            font=("Comic Sans MS", 11, 'italic'))
+                            font=("Poppins SemiBold", 11, 'italic'))
         create_user.grid(row=1, column=0, sticky='news', padx=145, pady=150)
 
         create_username_rec = Entry(create_account_page, width=22, fg='#5a5a5a', relief=GROOVE, bg='white',
-                                    highlightthickness=2, font=("Comic Sans MS", 11, 'italic'),
+                                    highlightthickness=2, font=("Poppins SemiBold", 11, 'italic'),
                                     textvariable=username_input_c)
         create_username_rec.place(x=120, y=180)
 
@@ -948,10 +948,10 @@ class Account:
 
         # PASSWORD
         create_password = Label(create_account_page, text='Enter Password', bg='#BBD0FF', fg='#040405',
-                                font=("Comic Sans MS", 11, 'italic'))
+                                font=("Poppins SemiBold", 11, 'italic'))
         create_password.place(x=145, y=210)
         create_password_rec = Entry(create_account_page, width=22, fg='#5a5a5a', relief=GROOVE, bg='white', show="",
-                                    highlightthickness=2, font=("Comic Sans MS", 11, 'italic'),
+                                    highlightthickness=2, font=("Poppins SemiBold", 11, 'italic'),
                                     textvariable=password_input_c)
         create_password_rec.place(x=120, y=240)
 
@@ -965,10 +965,10 @@ class Account:
 
         # CONTACT NUMBER
         create_contact = Label(create_account_page, text='Enter Contact Number', bg='#BBD0FF', fg='#040405',
-                               font=("Comic Sans MS", 11, 'italic'))
+                               font=("Poppins SemiBold", 11, 'italic'))
         create_contact.place(x=145, y=270)
         create_contact_rec = Entry(create_account_page, width=22, fg='#5a5a5a', relief=GROOVE, bg='white',
-                                   highlightthickness=2, font=("Comic Sans MS", 11, 'italic'),
+                                   highlightthickness=2, font=("Poppins SemiBold", 11, 'italic'),
                                    textvariable=contact_input_c)
         create_contact_rec.place(x=120, y=300)
 
@@ -982,15 +982,15 @@ class Account:
 
         # EMAIL
         create_email = Label(create_account_page, text='Enter Email', bg='#BBD0FF', fg='#040405',
-                             font=("Comic Sans MS", 11, 'italic'))
+                             font=("Poppins SemiBold", 11, 'italic'))
         create_email.place(x=145, y=340)
         create_email_rec = Entry(create_account_page, width=22, fg='#5a5a5a', relief=GROOVE, bg='white',
-                                 highlightthickness=2, font=("Comic Sans MS", 11, 'italic'),
+                                 highlightthickness=2, font=("Poppins SemiBold", 11, 'italic'),
                                  textvariable=email_input_c)
         create_email_rec.place(x=120, y=370)
 
         # CREATE BUTTON
-        create_button = Button(create_account_page, text='Create Account', font=("Comic Sans MS", 11, 'italic'),
+        create_button = Button(create_account_page, text='Create Account', font=("Poppins SemiBold", 11, 'italic'),
                                bg='black', fg='white', activebackground='white', width=25, border=0, cursor='hand2',
                                justify=CENTER, command=create_acc_database)
         create_button.place(x=140, y=430)
@@ -999,12 +999,12 @@ class Account:
         middle_line = Canvas(create_account_page, width=270, height=1.5, bg="#696969", highlightthickness=0)
         middle_line.place(x=120, y=490)
         alr_create_word = Label(create_account_page, text='Already have an account ?',
-                                font=("Comic Sans MS", 11, 'italic'), bg='#BBD0FF',
+                                font=("Poppins SemiBold", 11, 'italic'), bg='#BBD0FF',
                                 fg='#696969')
         alr_create_word.place(x=160, y=475)
 
         # LOGIN BUTTON
-        login_button = Button(create_account_page, text="LOGIN", font=("Comic Sans MS", 11, 'italic'),
+        login_button = Button(create_account_page, text="LOGIN", font=("Poppins SemiBold", 11, 'italic'),
                               bg='black', fg='white', activebackground='white', width=25, border=0, cursor='hand2',
                               justify=CENTER, command=lambda: show_frame(login_account_admin_page))
         login_button.place(x=140, y=510)

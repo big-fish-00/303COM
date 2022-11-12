@@ -36,7 +36,7 @@ plt.ylabel('Quantity')
 
 plt.show()
 
-pro_change = Prophet(n_changepoints=20, yearly_seasonality=True, changepoint_prior_scale=0.001)
+pro_change = Prophet(n_changepoints=20, yearly_seasonality=True, changepoint_prior_scale=0.08)
 forecast = pro_change.fit(df).predict(future)
 fig = pro_change.plot(forecast)
 a = add_changepoints_to_plot(fig.gca(), pro_change, forecast)

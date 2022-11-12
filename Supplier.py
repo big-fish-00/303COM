@@ -19,6 +19,7 @@ class Supplier:
         x = (screen_width / 2) - (width / 2)
         y = (screen_height / 3.5) - (height / 3.5)
         supplier_page.geometry("%dx%d+%d+%d" % (width, height, x, y))
+        supplier_page.resizable(0, 0)
 
         supplier_page.title('Supplier')
 
@@ -81,7 +82,7 @@ class Supplier:
             button(0, 80, 'H O M E', default_page)
             button(0, 120, 'I N V E N T O R Y', inventory)
             button(0, 160, 'S U P P L I E R', supplier)
-            button(0, 200, 'P U R C H A S E', purchase)
+            button(0, 200, 'I N V O I C E', purchase)
             button(0, 680, 'L O G O U T', logout)
 
             def close():
@@ -174,6 +175,34 @@ class Supplier:
         def add_stock():
             if id_entry.get() == "":
                 messagebox.showerror("Failed", "ID can't be empty")
+
+            elif name_entry.get() == "":
+                messagebox.showerror("Failed", "Supplier Name can't be empty")
+
+            elif contact_entry.get() == "":
+                messagebox.showerror("Failed", "Contact Number can't be empty")
+
+            elif not any(num.isdigit() for num in contact_entry.get()):
+                messagebox.showerror("Failed", "Contact Number should be only contain number")
+
+            elif address_entry.get() == "":
+                messagebox.showerror("Failed", "Address can't be empty")
+
+            elif state_entry.get() == "":
+                messagebox.showerror("Failed", "State can't be empty")
+
+            elif any(num.isdigit() for num in state_entry.get()):
+                messagebox.showerror("Failed", "State shouldn't have number")
+
+            elif postcode_entry.get() == "":
+                messagebox.showerror("Failed", "Postcode can't be empty")
+
+            elif not any(num.isdigit() for num in postcode_entry.get()):
+                messagebox.showerror("Failed", "Postcode should only contain number")
+
+            elif document_entry.get() == "":
+                messagebox.showerror("Failed", "Document can't be empty")
+
             else:
                 conn = sqlite3.connect("./database/DnetPower.db")
                 cur = conn.cursor()
@@ -437,7 +466,7 @@ class Supplier:
         supplier_table.tag_configure('evenrow', background="lightblue")
 
         # Create label frame
-        search_frame = LabelFrame(supplier_page, text="Search Supplier Name", font=("Comic Sans MS", 15, 'italic'),
+        search_frame = LabelFrame(supplier_page, text="Search Supplier Name", font=("Poppins SemiBold", 15, 'italic'),
                                   background='#BBD0FF')
         search_frame.pack(fill="x", padx=20)
         search_frame.place(x=20, y=360)
@@ -455,93 +484,93 @@ class Supplier:
         searchDocument_button.grid(row=0, column=4, padx=10, pady=10)
 
         # Add Record Entry Boxes
-        info_frame = LabelFrame(supplier_page, text="Supplier Info", font=("Comic Sans MS", 15, 'italic'),
+        info_frame = LabelFrame(supplier_page, text="Supplier Info", font=("Poppins SemiBold", 15, 'italic'),
                                 background='#BBD0FF')
         info_frame.pack(fill="x", padx=20, pady=(30, 0))
 
-        id_label = Label(info_frame, text="ID", font=("Comic Sans MS", 10, 'italic'), background='#BBD0FF')
+        id_label = Label(info_frame, text="ID", font=("Poppins SemiBold", 10, 'italic'), background='#BBD0FF')
         id_label.grid(row=0, column=0, padx=8, pady=10)
         id_entry = Entry(info_frame)
         id_entry.grid(row=0, column=1, padx=10, pady=10)
 
-        name_label = Label(info_frame, text="Name", font=("Comic Sans MS", 10, 'italic'), background='#BBD0FF')
+        name_label = Label(info_frame, text="Name", font=("Poppins SemiBold", 10, 'italic'), background='#BBD0FF')
         name_label.grid(row=0, column=2, padx=8, pady=10)
         name_entry = Entry(info_frame)
         name_entry.grid(row=0, column=3, padx=10, pady=10)
 
-        contact_label = Label(info_frame, text="Contact Number", font=("Comic Sans MS", 10, 'italic'),
+        contact_label = Label(info_frame, text="Contact Number", font=("Poppins SemiBold", 10, 'italic'),
                               background='#BBD0FF')
         contact_label.grid(row=0, column=4, padx=8, pady=10)
         contact_entry = Entry(info_frame)
         contact_entry.grid(row=0, column=5, padx=10, pady=10)
 
-        address_label = Label(info_frame, text="Address", font=("Comic Sans MS", 10, 'italic'), background='#BBD0FF')
+        address_label = Label(info_frame, text="Address", font=("Poppins SemiBold", 10, 'italic'), background='#BBD0FF')
         address_label.grid(row=0, column=6, padx=8, pady=10)
         address_entry = Entry(info_frame)
         address_entry.grid(row=0, column=7, padx=10, pady=10)
 
-        state_label = Label(info_frame, text="State", font=("Comic Sans MS", 10, 'italic'), background='#BBD0FF')
+        state_label = Label(info_frame, text="State", font=("Poppins SemiBold", 10, 'italic'), background='#BBD0FF')
         state_label.grid(row=0, column=8, padx=8, pady=10)
         state_entry = Entry(info_frame)
         state_entry.grid(row=0, column=9, padx=10, pady=10)
 
-        postcode_label = Label(info_frame, text="Postcode", font=("Comic Sans MS", 10, 'italic'), background='#BBD0FF')
+        postcode_label = Label(info_frame, text="Postcode", font=("Poppins SemiBold", 10, 'italic'), background='#BBD0FF')
         postcode_label.grid(row=0, column=10, padx=8, pady=10)
         postcode_entry = Entry(info_frame)
         postcode_entry.grid(row=0, column=11, padx=10, pady=10)
 
-        document_label = Label(info_frame, text="Document NO", font=("Comic Sans MS", 10, 'italic'),
+        document_label = Label(info_frame, text="Document NO", font=("Poppins SemiBold", 10, 'italic'),
                                background='#BBD0FF')
         document_label.grid(row=1, column=0, padx=8, pady=10)
         document_entry = Entry(info_frame)
         document_entry.grid(row=1, column=1, padx=10, pady=10)
 
         # Add Buttons
-        button_frame = LabelFrame(supplier_page, text="Commands", font=("Comic Sans MS", 15, 'italic'),
+        button_frame = LabelFrame(supplier_page, text="Commands", font=("Poppins SemiBold", 15, 'italic'),
                                   background='#BBD0FF')
         button_frame.pack(fill="x", padx=20, pady=(30, 0))
 
-        update_button = Button(button_frame, text="Update Record", font=("Comic Sans MS", 10, 'italic'),
+        update_button = Button(button_frame, text="Update Supplier", font=("Poppins SemiBold", 10, 'italic'),
                                bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
                                justify=CENTER, command=update_stock)
         update_button.grid(row=0, column=0, padx=30, pady=8)
 
-        add_button = Button(button_frame, text="Add Record", font=("Comic Sans MS", 10, 'italic'),
+        add_button = Button(button_frame, text="Add Supplier", font=("Poppins SemiBold", 10, 'italic'),
                             bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
                             justify=CENTER, command=add_stock)
         add_button.grid(row=0, column=1, padx=30, pady=8)
 
-        remove_all_button = Button(button_frame, text="Remove All Records", font=("Comic Sans MS", 10, 'italic'),
+        remove_all_button = Button(button_frame, text="Remove All Suppliers", font=("Poppins SemiBold", 10, 'italic'),
                                    bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
                                    justify=CENTER, command=delete_all)
         remove_all_button.grid(row=0, column=2, padx=30, pady=8)
 
-        remove_one_button = Button(button_frame, text="Remove One Selected", font=("Comic Sans MS", 10, 'italic'),
+        remove_one_button = Button(button_frame, text="Remove One Selected", font=("Poppins SemiBold", 10, 'italic'),
                                    bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
                                    justify=CENTER, command=delete_data)
         remove_one_button.grid(row=0, column=3, padx=30, pady=8)
 
-        remove_many_button = Button(button_frame, text="Remove Many Selected", font=("Comic Sans MS", 10, 'italic'),
+        remove_many_button = Button(button_frame, text="Remove Many Selected", font=("Poppins SemiBold", 10, 'italic'),
                                     bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
                                     justify=CENTER, command=delete_mny_data)
         remove_many_button.grid(row=0, column=4, padx=30, pady=8)
 
-        move_up_button = Button(button_frame, text="Move Up", font=("Comic Sans MS", 10, 'italic'),
+        move_up_button = Button(button_frame, text="Move Up", font=("Poppins SemiBold", 10, 'italic'),
                                 bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
                                 justify=CENTER, command=move_up)
         move_up_button.grid(row=0, column=5, padx=30, pady=8)
 
-        move_down_button = Button(button_frame, text="Move Down", font=("Comic Sans MS", 10, 'italic'),
+        move_down_button = Button(button_frame, text="Move Down", font=("Poppins SemiBold", 10, 'italic'),
                                   bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
                                   justify=CENTER, command=move_down)
         move_down_button.grid(row=0, column=6, padx=30, pady=8)
 
-        select_record_button = Button(button_frame, text="Clear All", font=("Comic Sans MS", 10, 'italic'),
+        select_record_button = Button(button_frame, text="Clear All", font=("Poppins SemiBold", 10, 'italic'),
                                       bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
                                       justify=CENTER, command=clear_data)
         select_record_button.grid(row=0, column=7, padx=30, pady=8)
 
-        reset_button = Button(button_frame, text="Reset", font=("Comic Sans MS", 10, 'italic'),
+        reset_button = Button(button_frame, text="Reset", font=("Poppins SemiBold", 10, 'italic'),
                               bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
                               justify=CENTER, command=query_database)
         reset_button.grid(row=0, column=8, padx=30, pady=8)

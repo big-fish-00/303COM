@@ -11,7 +11,6 @@ import matplotlib.pyplot as plt
 from prophet.plot import add_changepoints_to_plot
 
 
-
 class SalesForecast:
     def __init__(self, sales_forecast_page):
         self.sales_forecast_page = sales_forecast_page
@@ -32,7 +31,7 @@ class SalesForecast:
 
         def default_page():
             sales_forecast_page.destroy()
-            filename = 'AdminHome.py.py'
+            filename = 'AdminHome.py'
             os.system(filename)
 
         def inventory():
@@ -97,7 +96,7 @@ class SalesForecast:
             button(0, 80, 'H O M E', default_page)
             button(0, 120, 'I N V E N T O R Y', inventory)
             button(0, 160, 'S U P P L I E R', supplier)
-            button(0, 200, 'P U R C H A S E', purchase)
+            button(0, 200, 'I N V O I C E', purchase)
             button(0, 240, 'P A Y M E N T', bill_table)
             button(0, 280, 'F O R E C A S T', forecast_product)
             button(0, 680, 'L O G O U T', logout)
@@ -147,13 +146,14 @@ class SalesForecast:
             if (result1[i][0] not in stock):
                 stock.append(result1[i][0])
 
-        def printPDF():
+        def printCSV():
             if productName_combo.get() == "":
                 messagebox.showerror("Error", "Please select a product")
             else:
                 conn = sqlite3.connect('./database/DnetPower.db')
                 cursor = conn.cursor()
-                some = "SELECT purchase_product_name, purchase_brand, purchase_quantity, purchase_time, purchase_billnm, purchase_cashier_name," \
+                some = "SELECT purchase_product_name, purchase_brand, purchase_quantity, purchase_time, " \
+                       "purchase_billnm, purchase_cashier_name," \
                        "purchase_status FROM Purchase WHERE purchase_product_name = ?"
                 cursor.execute(some, [productName_combo.get()])
                 with open("purchase.csv", 'w', newline='') as csv_file:
@@ -168,10 +168,9 @@ class SalesForecast:
             filename = 'TimeForecast.py'
             os.system(filename)
 
-
         foreLabel = Label(sales_forecast_page, text="Forecast",
-                             font=("Poppins SemiBold", 13, 'italic'),
-                             background='#BBD0FF')
+                          font=("Poppins SemiBold", 13, 'italic'),
+                          background='#BBD0FF')
         foreLabel.place(x=250, y=120)
 
         notification = Label(sales_forecast_page, text="Kindly reminder, select a product before generate csv file."
@@ -192,10 +191,11 @@ class SalesForecast:
 
         generateCSV = Button(sales_forecast_page, text="Generate CSV File", font=("Poppins SemiBold", 10, 'italic'),
                              bg='white', fg='black', activebackground='#BBD0FF', width=15, border=0, cursor='hand2',
-                             justify=CENTER, command=printPDF)
+                             justify=CENTER, command=printCSV)
         generateCSV.place(x=225, y=350)
 
-        dateLine = Label(sales_forecast_page, text="View forecast for one year", font=("Poppins SemiBold", 11, 'italic'),
+        dateLine = Label(sales_forecast_page, text="View forecast for one year",
+                         font=("Poppins SemiBold", 11, 'italic'),
                          background='#BBD0FF')
         dateLine.place(x=195, y=410)
 

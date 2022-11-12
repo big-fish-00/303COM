@@ -19,14 +19,15 @@ class PurchaseTable:
         x = (screen_width / 2) - (width / 2)
         y = (screen_height / 3.5) - (height / 3.5)
         purchase_table_page.geometry("%dx%d+%d+%d" % (width, height, x, y))
+        purchase_table_page.resizable(0, 0)
 
-        purchase_table_page.title('Payment Table')
+        purchase_table_page.title('Invoice Table')
 
         purchase_table_page['bg'] = '#BBD0FF'
 
         def default_page():
             purchase_table_page.destroy()
-            filename = 'AdminHome.py.py'
+            filename = 'AdminHome.py'
             os.system(filename)
 
         def inventory():
@@ -91,7 +92,7 @@ class PurchaseTable:
             button(0, 80, 'H O M E', default_page)
             button(0, 120, 'I N V E N T O R Y', inventory)
             button(0, 160, 'S U P P L I E R', supplier)
-            button(0, 200, 'P U R C H A S E', purchase)
+            button(0, 200, 'I N V O I C E', purchase)
             button(0, 240, 'P A Y M E N T', bill_table)
             button(0, 280, 'F O R E C A S T', forecast_product)
             button(0, 680, 'L O G O U T', logout)
@@ -211,7 +212,7 @@ class PurchaseTable:
             status_entry.insert(0, value[7])
 
         # UPDATE
-        def update_stock():
+        def update_invoice():
             get = tree_table.focus()
             tree_table.item(get, text="", values=(id_entry.get(), name_entry.get(), brand_entry.get(),
                                                   quantity_entry.get(), time_entry.get(), billnm_entry.get(),
@@ -401,7 +402,7 @@ class PurchaseTable:
 
         update_button = Button(button_frame, text="Update Record", font=("Comic Sans MS", 10, 'italic'),
                                bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
-                               justify=CENTER, command=update_stock)
+                               justify=CENTER, command=update_invoice)
         update_button.grid(row=0, column=0, padx=30, pady=8)
 
         move_up_button = Button(button_frame, text="Move Up", font=("Comic Sans MS", 10, 'italic'),
