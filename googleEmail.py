@@ -78,7 +78,7 @@ class googleEmailApi:
         mime_message['subject'] = subject
         # text
         mime_message.set_content(
-            'Hi, below is the receipt.'
+            'Hi, below is the invoice.'
             ' Kindly check it.'
         )
         attachment_filename = f"{file}"

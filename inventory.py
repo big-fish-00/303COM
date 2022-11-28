@@ -2,6 +2,7 @@ from tkinter import *
 import os
 from PIL import ImageTk, Image
 from tkinter import ttk
+from datetime import datetime
 from tkinter import messagebox
 import sqlite3
 
@@ -118,6 +119,8 @@ class Inventory:
 
         # CONNECT DATABASE
         def query_database():
+            searchName.delete(0, END)
+
             for datas in tree_table.get_children():
                 tree_table.delete(datas)
 
@@ -180,6 +183,8 @@ class Inventory:
 
         # ADD DATA
         def add_stock():
+            format = "%d/%m/%Y"
+
             if id_entry.get() == "":
                 messagebox.showerror("Failed", "ID can't be empty")
 
@@ -212,6 +217,9 @@ class Inventory:
 
             elif date_entry.get() == "":
                 messagebox.showerror("Failed", "Date can't be empty")
+
+            elif date_entry.get() == (datetime.strptime(date_entry.get(), format)):
+                messagebox.showerror("Failed", "Date format incorrect")
 
             elif supplier_entry.get() == "":
                 messagebox.showerror("Failed", "Supplier can't be empty")
@@ -248,6 +256,8 @@ class Inventory:
             price_entry.delete(0, END)
             qty_entry.delete(0, END)
             date_entry.delete(0, END)
+            supplier_entry.configure(state='normal')
+            document_entry.configure(state='normal')
             supplier_entry.delete(0, END)
             document_entry.delete(0, END)
             discount_entry.delete(0, END)
@@ -328,6 +338,8 @@ class Inventory:
             price_entry.delete(0, END)
             qty_entry.delete(0, END)
             date_entry.delete(0, END)
+            supplier_entry.configure(state='normal')
+            document_entry.configure(state='normal')
             supplier_entry.delete(0, END)
             document_entry.delete(0, END)
             discount_entry.delete(0, END)
@@ -343,6 +355,8 @@ class Inventory:
             price_entry.delete(0, END)
             qty_entry.delete(0, END)
             date_entry.delete(0, END)
+            supplier_entry.configure(state='normal')
+            document_entry.configure(state='normal')
             supplier_entry.delete(0, END)
             document_entry.delete(0, END)
             discount_entry.delete(0, END)
@@ -394,10 +408,13 @@ class Inventory:
             price_entry.delete(0, END)
             qty_entry.delete(0, END)
             date_entry.delete(0, END)
+            supplier_entry.configure(state='normal')
+            document_entry.configure(state='normal')
             supplier_entry.delete(0, END)
             document_entry.delete(0, END)
             discount_entry.delete(0, END)
             total_entry.delete(0, END)
+
 
         def search_data():
             get = searchName.get()
@@ -627,47 +644,47 @@ class Inventory:
         button_frame.pack(fill="x", padx=20, pady=(30, 0))
 
         update_button = Button(button_frame, text="Update Record", font=("Poppins SemiBold", 10, 'italic'),
-                               bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
+                               border=0, cursor='hand2',
                                justify=CENTER, command=update_stock)
         update_button.grid(row=0, column=0, padx=30, pady=8)
 
         add_button = Button(button_frame, text="Add Record", font=("Poppins SemiBold", 10, 'italic'),
-                            bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
+                            border=0, cursor='hand2',
                             justify=CENTER, command=add_stock)
         add_button.grid(row=0, column=1, padx=30, pady=8)
 
         remove_all_button = Button(button_frame, text="Remove All Records", font=("Poppins SemiBold", 10, 'italic'),
-                                   bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
+                                   border=0, cursor='hand2',
                                    justify=CENTER, command=delete_all)
         remove_all_button.grid(row=0, column=2, padx=30, pady=8)
 
         remove_one_button = Button(button_frame, text="Remove One Selected", font=("Poppins SemiBold", 10, 'italic'),
-                                   bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
+                                   border=0, cursor='hand2',
                                    justify=CENTER, command=delete_data)
         remove_one_button.grid(row=0, column=3, padx=30, pady=8)
 
         remove_many_button = Button(button_frame, text="Remove Many Selected", font=("Poppins SemiBold", 10, 'italic'),
-                                    bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
+                                    border=0, cursor='hand2',
                                     justify=CENTER, command=delete_mny_data)
         remove_many_button.grid(row=0, column=4, padx=30, pady=8)
 
         move_up_button = Button(button_frame, text="Move Up", font=("Poppins SemiBold", 10, 'italic'),
-                                bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
+                                border=0, cursor='hand2',
                                 justify=CENTER, command=move_up)
         move_up_button.grid(row=0, column=5, padx=30, pady=8)
 
         move_down_button = Button(button_frame, text="Move Down", font=("Poppins SemiBold", 10, 'italic'),
-                                  bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
+                                  border=0, cursor='hand2',
                                   justify=CENTER, command=move_down)
         move_down_button.grid(row=0, column=6, padx=30, pady=8)
 
         select_record_button = Button(button_frame, text="Clear All", font=("Poppins SemiBold", 10, 'italic'),
-                                      bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
+                                      border=0, cursor='hand2',
                                       justify=CENTER, command=clear_data)
         select_record_button.grid(row=0, column=7, padx=30, pady=8)
 
         reset_button = Button(button_frame, text="Reset", font=("Poppins SemiBold", 10, 'italic'),
-                              bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
+                              border=0, cursor='hand2',
                               justify=CENTER, command=query_database)
         reset_button.grid(row=0, column=8, padx=30, pady=8)
 

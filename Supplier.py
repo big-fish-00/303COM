@@ -531,47 +531,47 @@ class Supplier:
         button_frame.pack(fill="x", padx=20, pady=(30, 0))
 
         update_button = Button(button_frame, text="Update Supplier", font=("Poppins SemiBold", 10, 'italic'),
-                               bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
+                               border=0, cursor='hand2',
                                justify=CENTER, command=update_stock)
         update_button.grid(row=0, column=0, padx=30, pady=8)
 
         add_button = Button(button_frame, text="Add Supplier", font=("Poppins SemiBold", 10, 'italic'),
-                            bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
+                            border=0, cursor='hand2',
                             justify=CENTER, command=add_stock)
         add_button.grid(row=0, column=1, padx=30, pady=8)
 
         remove_all_button = Button(button_frame, text="Remove All Suppliers", font=("Poppins SemiBold", 10, 'italic'),
-                                   bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
+                                   border=0, cursor='hand2',
                                    justify=CENTER, command=delete_all)
         remove_all_button.grid(row=0, column=2, padx=30, pady=8)
 
         remove_one_button = Button(button_frame, text="Remove One Selected", font=("Poppins SemiBold", 10, 'italic'),
-                                   bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
+                                   border=0, cursor='hand2',
                                    justify=CENTER, command=delete_data)
         remove_one_button.grid(row=0, column=3, padx=30, pady=8)
 
         remove_many_button = Button(button_frame, text="Remove Many Selected", font=("Poppins SemiBold", 10, 'italic'),
-                                    bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
+                                    border=0, cursor='hand2',
                                     justify=CENTER, command=delete_mny_data)
         remove_many_button.grid(row=0, column=4, padx=30, pady=8)
 
         move_up_button = Button(button_frame, text="Move Up", font=("Poppins SemiBold", 10, 'italic'),
-                                bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
+                                border=0, cursor='hand2',
                                 justify=CENTER, command=move_up)
         move_up_button.grid(row=0, column=5, padx=30, pady=8)
 
         move_down_button = Button(button_frame, text="Move Down", font=("Poppins SemiBold", 10, 'italic'),
-                                  bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
+                                  border=0, cursor='hand2',
                                   justify=CENTER, command=move_down)
         move_down_button.grid(row=0, column=6, padx=30, pady=8)
 
         select_record_button = Button(button_frame, text="Clear All", font=("Poppins SemiBold", 10, 'italic'),
-                                      bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
+                                      border=0, cursor='hand2',
                                       justify=CENTER, command=clear_data)
         select_record_button.grid(row=0, column=7, padx=30, pady=8)
 
         reset_button = Button(button_frame, text="Reset", font=("Poppins SemiBold", 10, 'italic'),
-                              bg='black', fg='white', activebackground='white', border=0, cursor='hand2',
+                              border=0, cursor='hand2',
                               justify=CENTER, command=query_database)
         reset_button.grid(row=0, column=8, padx=30, pady=8)
 
